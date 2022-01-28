@@ -124,6 +124,7 @@ NavMeshSettings:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1001 &11987298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -185,6 +186,9 @@ PrefabInstance:
 =======
 --- !u!1 &80431753
 >>>>>>> 7b7e57ad3c2815f7d5ed8cca889f08923207158d
+=======
+--- !u!1 &80431753
+>>>>>>> 7b7e57ad3c2815f7d5ed8cca889f08923207158d
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,6 +204,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!114 &129806135
 MonoBehaviour:
@@ -276,6 +281,9 @@ Camera:
 =======
 --- !u!4 &80431754
 >>>>>>> 7b7e57ad3c2815f7d5ed8cca889f08923207158d
+=======
+--- !u!4 &80431754
+>>>>>>> 7b7e57ad3c2815f7d5ed8cca889f08923207158d
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -284,7 +292,11 @@ Transform:
   m_GameObject: {fileID: 80431753}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LocalPosition: {x: 9, y: -6, z: -10}
+=======
+  m_LocalPosition: {x: 0.62, y: 0.33, z: -0.2}
+>>>>>>> 7b7e57ad3c2815f7d5ed8cca889f08923207158d
 =======
   m_LocalPosition: {x: 0.62, y: 0.33, z: -0.2}
 >>>>>>> 7b7e57ad3c2815f7d5ed8cca889f08923207158d
@@ -294,6 +306,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!114 &129806139
 MonoBehaviour:
@@ -343,6 +356,9 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
 --- !u!1 &529605795
+=======
+--- !u!1 &632028722
+>>>>>>> 7b7e57ad3c2815f7d5ed8cca889f08923207158d
 =======
 --- !u!1 &632028722
 >>>>>>> 7b7e57ad3c2815f7d5ed8cca889f08923207158d
