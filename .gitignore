@@ -61,3 +61,7 @@ Thumbs.db.meta
 
 # VS Code
 *.vscode
+
+# Jetbrains
+.idea/
+

@@ -7,13 +7,14 @@ public class LerpCamera : MonoBehaviour
 {
     public Vector2 positionToMoveTo;
     [SerializeField] public float duration;
+    Vector2 backupPosition;
     void Start()
     {
+        backupPosition = this.transform.position;
         StartCoroutine(LerpPosition(positionToMoveTo));
     }
 
     private float nextUpdate = 2;
-    Vector2 backupPosition = Vector2.zero;
     public void Update()
     {
         if (Time.timeSinceLevelLoad > nextUpdate)
