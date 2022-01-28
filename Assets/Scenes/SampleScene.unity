@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ad0cdb59b5ae42dae405960b1f989a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionToMoveTo: {x: 13, y: 0}
+  positionToMoveTo: {x: 27, y: -6}
   duration: 0.52
 --- !u!114 &129806140
 MonoBehaviour:
