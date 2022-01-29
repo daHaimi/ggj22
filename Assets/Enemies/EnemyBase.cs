@@ -34,6 +34,10 @@ public class EnemyBase : MonoBehaviour
 
     private void Die()
     {
+        if (drop)
+        {
+            Instantiate(drop, transform.position, transform.rotation);
+        }
         Destroy(gameObject);
     }
 }

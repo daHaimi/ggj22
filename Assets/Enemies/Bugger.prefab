@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitpoints: 10
-  drop: {fileID: 0}
+  drop: {fileID: 2994227832071957011, guid: 16ffe0747b3bd8904b69a5bd37a9805d, type: 3}
   speed: 1
 --- !u!58 &3853136527662699688
 CircleCollider2D:

@@ -11,11 +11,12 @@ public class Pickup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<CircleCollider2D>().tag = "Pickup";
     }
 
     // Update is called once per frame
     void Update()
     {
         
-    }
+    }   
 }

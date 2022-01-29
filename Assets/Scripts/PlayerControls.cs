@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Models;
 using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
@@ -12,6 +13,7 @@ public class PlayerControls : MonoBehaviour
 
     private GameControls controls;
     private Animator animator;
+    private AudioSource player;
 
     private Vector2 lookDirection = new Vector2(1, 0);
     // Start is called before the first frame update
@@ -19,8 +21,21 @@ public class PlayerControls : MonoBehaviour
     {
         controls = Camera.main.GetComponent<GameControls>();
         animator = this.GetComponent<Animator>();
+        player = Camera.main.GetComponent<AudioSource>();
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Pickup"))
+        {
+            Pickup p = other.gameObject.GetComponent<Pickup>();
+            controls.playerCapabilities.pickups[p.type]++;
+            player.clip = p.pickupSound;
+            player.Play();
+            Destroy(other.gameObject);
+        }
+    }
+    
     private void OnTriggerStay2D(Collider2D other)
     {
         
