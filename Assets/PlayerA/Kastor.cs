@@ -20,7 +20,7 @@ public class Kastor : MonoBehaviour
     {
         sleep -= Time.deltaTime;
         GameObject nearestEnemy = Tools.GetClosest(gameObject, GameObject.FindGameObjectsWithTag("Enemy"));
-        if (InRange(nearestEnemy))
+        if (nearestEnemy && InRange(nearestEnemy))
         {
             if (sleep <= 0)
             {
@@ -38,9 +38,16 @@ public class Kastor : MonoBehaviour
     private void ShootAt(GameObject enemy)
     {
         GameObject pfeil = Instantiate(pfeilPrefab, transform.position, Quaternion.identity);
+
+        Collider2D pfeilCollider = pfeil.GetComponent<Collider2D>();
+        Physics2D.IgnoreCollision(pfeilCollider, GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(pfeilCollider, GetComponent<PlayerControls>().otherPlayer.GetComponent<Collider2D>());
         Tools.LookTowards(pfeil.transform, enemy.transform);
-        pfeil.GetComponent<Pfeil>().damage = controls.playerCapabilities.damage;
-        pfeil.GetComponent<Pfeil>().ttl = controls.playerCapabilities.shotTTL;
-        pfeil.GetComponent<Rigidbody2D>().AddForce((enemy.transform.position - transform.position).normalized * controls.playerCapabilities.shotSpeed);
+        Pfeil p = pfeil.GetComponent<Pfeil>();
+        p.damage = controls.playerCapabilities.damage;
+        p.ttl = controls.playerCapabilities.shotTTL;
+        Rigidbody2D body = pfeil.GetComponent<Rigidbody2D>();
+        body.freezeRotation = true;
+        body.AddForce((enemy.transform.position - transform.position).normalized * controls.playerCapabilities.shotSpeed);
     }
 }

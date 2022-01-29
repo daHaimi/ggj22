@@ -6,11 +6,14 @@ using UnityEngine;
 public class GameControls : MonoBehaviour
 {
     public Vector2 roomSize;
+    public int seed; 
     public Vector2 curRoom;
     public Bounds curRoomBounds;
     public List<GameObject> player;
     public Dictionary<Vector2, GameObject> rooms = new Dictionary<Vector2, GameObject>();
     public PlayerCapabilities playerCapabilities = new PlayerCapabilities();
+    public List<GameObject> pickupPrefabs;
+    public List<GameObject> enemyPrefabs;
     
     // Start is called before the first frame update
     void Start()

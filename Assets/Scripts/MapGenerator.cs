@@ -14,7 +14,6 @@ public class MapGenerator : MonoBehaviour
 {
     public List<GameObject> roomPrefabs;
     [SerializeField] public int mapSize; 
-    [SerializeField] public int seed; 
     private LevelMap m_LevelMap;
 
     private GameControls controls;
@@ -137,7 +136,7 @@ public class MapGenerator : MonoBehaviour
     
     private void CreateFloor()
     {
-        var random = new Random(seed);
+        var random = new Random(controls.seed);
         int y = 0;
         foreach (var singlePos in new RectInt(Vector2Int.zero, m_LevelMap.size).allPositionsWithin)
         {
@@ -151,6 +150,8 @@ public class MapGenerator : MonoBehaviour
             {
                 var go = Instantiate(roomPrefabs[random.Next(0, roomPrefabs.Count)], transform);
                 go.transform.position = new Vector3(singlePos.x * controls.roomSize.x, singlePos.y * controls.roomSize.y * -1, 0);
+                RoomBehaviour room = go.AddComponent<RoomBehaviour>();
+                room.SetRoomType(t);
                 ChangeRoom cr = go.AddComponent<ChangeRoom>();
                 cr.roomPosition = singlePos;
                 cr.playerCharacters = controls.player;
@@ -170,7 +171,7 @@ public class MapGenerator : MonoBehaviour
 
     private void PlaceRooms()
     {
-        var random = new Random(seed);
+        var random = new Random(controls.seed);
         Vector2Int location;
         foreach (RoomType room in new[] {RoomType.Start, RoomType.Boss, RoomType.Item})
         {

@@ -34,11 +34,9 @@ public class ChangeRoom : MonoBehaviour
         
         GameControls controls = Camera.main.GetComponent<GameControls>();
         Vector2 newRoomPos = controls.curRoom + direction;
-        Debug.Log(newRoomPos);
         direction *= new Vector2(1, -1);
         
         Vector2 target = Camera.main.transform.position + new Vector3(controls.roomSize.x * direction.x, controls.roomSize.y * direction.y, 0);
-        Debug.Log("Room (" + roomPosition.x + "," + roomPosition.y + "): " + trigger.name + " : " + direction.x + " : " + direction.y);
         StartCoroutine(LerpPosition(target));
 
         Vector3 newPos = trigger.transform.position;
@@ -48,6 +46,7 @@ public class ChangeRoom : MonoBehaviour
         trigger.GetComponent<PlayerControls>().otherPlayer.transform.position = newPos;
         // Update Room
         Camera.main.GetComponent<GameControls>().SetCurRoom(newRoomPos);
+        controls.rooms[controls.curRoom].GetComponent<RoomBehaviour>().EnterRoom();
     }
     
     IEnumerator LerpPosition(Vector3 targetPosition)

@@ -27,6 +27,6 @@ public class Tools
     {
         Vector3 dir = target.transform.position - source.transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        source.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        source.transform.rotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
     }
 }

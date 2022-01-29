@@ -22,12 +22,15 @@ namespace Models
         public float range = 10.0f;
         public float shotSpeed = 300f;
         public float shotTTL = 2.0f;
-        public List<LifeContainer> life = new List<LifeContainer>();
+        public Dictionary<PickupType, int> pickups = new Dictionary<PickupType, int>();
+            public List<LifeContainer> life = new List<LifeContainer>();
 
         public PlayerCapabilities()
         {
             life.Add(new LifeContainer(2f, 2f));
             life.Add(new LifeContainer(3f, 3f));
+            pickups[PickupType.Coin] = 0;
+            pickups[PickupType.Key] = 0;
         }
     }
 }
