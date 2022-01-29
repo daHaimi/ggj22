@@ -6,6 +6,7 @@ using Models;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using Random = System.Random;
 
@@ -39,6 +40,7 @@ public class MapGenerator : MonoBehaviour
     {
         // Walls
         {
+            Tilemap tm = room.gameObject.GetComponentsInChildren<Tilemap>()[0];
             // North (interchange up/down!!!)
             BoxCollider2D bcNorth = room.gameObject.AddComponent<BoxCollider2D>();
             if (m_LevelMap.InBounds(pos + Vector2Int.down) && !m_LevelMap.IsEmpty(pos + Vector2Int.down))
@@ -58,6 +60,8 @@ public class MapGenerator : MonoBehaviour
             {
                 bcNorth.size = new Vector2(controls.roomSize.x - 2, 1);
                 bcNorth.offset = new Vector2(controls.roomSize.x / 2, -0.5f);
+                TileBase wallNorth = tm.GetTile(new Vector3Int(6, 0, 0));
+                for (int i = 7; i <= 10; i++) tm.SetTile(new Vector3Int(i, 0, 0), wallNorth);
             }
 
             // South (interchange up/down!!!)
@@ -79,6 +83,8 @@ public class MapGenerator : MonoBehaviour
             {
                 bcSouth.size = new Vector2(controls.roomSize.x - 2, 1);
                 bcSouth.offset = new Vector2(controls.roomSize.x / 2, -controls.roomSize.y + 0.5f);
+                TileBase wallSouth = tm.GetTile(new Vector3Int(6, -13, 0));
+                for (int i = 7; i <= 10; i++) tm.SetTile(new Vector3Int(i, -13, 0), wallSouth);
             }
 
             // West 
@@ -100,6 +106,8 @@ public class MapGenerator : MonoBehaviour
             {
                 bcWest.size = new Vector2(1, controls.roomSize.y);
                 bcWest.offset = new Vector2(0.5f, -controls.roomSize.y / 2);
+                TileBase wallWest = tm.GetTile(new Vector3Int(0, -9, 0));
+                for (int i = -8; i <= -5; i++) tm.SetTile(new Vector3Int(0, i, 0), wallWest);
             }
 
             // East 
@@ -121,6 +129,8 @@ public class MapGenerator : MonoBehaviour
             {
                 bcEast.size = new Vector2(1, controls.roomSize.y);
                 bcEast.offset = new Vector2(controls.roomSize.x - 0.5f, -controls.roomSize.y / 2);
+                TileBase wallEast = tm.GetTile(new Vector3Int(17, -9, 0));
+                for (int i = -8; i <= -5; i++) tm.SetTile(new Vector3Int(17, i, 0), wallEast);
             }
         }
         // Doors
