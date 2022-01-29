@@ -149,6 +149,7 @@ public class MapGenerator : MonoBehaviour
             if (t != RoomType.None)
             {
                 var go = Instantiate(roomPrefabs[random.Next(0, roomPrefabs.Count)], transform);
+                go.AddComponent<RoomTileController>();
                 go.transform.position = new Vector3(singlePos.x * controls.roomSize.x, singlePos.y * controls.roomSize.y * -1, 0);
                 RoomBehaviour room = go.AddComponent<RoomBehaviour>();
                 room.SetRoomType(t);
