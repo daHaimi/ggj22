@@ -15,7 +15,7 @@ MonoBehaviour:
   m_PixelsPerUnit: 16
   m_EdgesPerEllipse: 32
   m_AnimationFramerate: 20
-  m_DefaultMaterial: {fileID: 2100000, guid: 32e74f4a140e2e92d8240d405f67dd10, type: 2}
+  m_DefaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_MaterialMatchings: []
   m_ObjectTypesXml: {fileID: 0}
   m_ParseXmlError: 

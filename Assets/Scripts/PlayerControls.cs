@@ -45,6 +45,21 @@ public class PlayerControls : MonoBehaviour
         }
         GetComponent<Rigidbody2D>().AddForce(vec * speed);
 
+        UpdateLookDirection();
+
+        // float distance = Vector2.Distance(transform.position, otherPlayer.transform.position);
+        // RaycastHit2D hit = Physics2D.Raycast(transform.position,
+        //     otherPlayer.transform.position,
+        //     distance);
+        // if (hit.collider != null)
+        // {
+        //     Debug.Log("hitting: " + hit.collider.name);
+        // }
+        // Debug.DrawRay(transform.position, otherPlayer.transform.position * distance, Color.blue);
+    }
+
+    void UpdateLookDirection()
+    {
         lookDirection = GetComponent<Rigidbody2D>().velocity;
         lookDirection.Normalize();
         if (animator)
