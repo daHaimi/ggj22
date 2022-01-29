@@ -13,25 +13,21 @@ public class MapGenerator : MonoBehaviour
 {
     public List<GameObject> playerCharacters;
     public List<GameObject> roomPrefabs;
-    public Vector2 roomSize;
     [SerializeField] public int mapSize; 
     [SerializeField] public int seed; 
     private LevelMap m_LevelMap;
 
+    private GameControls controls;
+
     // Start is called before the first frame update
     void Start()
     {
+        controls = Camera.main.GetComponent<GameControls>();
         m_LevelMap = new LevelMap(Vector2Int.one * mapSize);
         GenerateMap();
         CreateFloor();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
     private void GenerateMap()
     {
         PlaceRooms();
@@ -41,66 +37,93 @@ public class MapGenerator : MonoBehaviour
 
     private void AddColliders(GameObject room, Vector2Int pos)
     {
-        // North (interchange up/down!!!)
-        BoxCollider2D bcNorth = room.gameObject.AddComponent<BoxCollider2D>();
-        if (m_LevelMap.InBounds(pos + Vector2Int.down) && ! m_LevelMap.IsEmpty(pos + Vector2Int.down))
+        // Walls
         {
-            bcNorth.size = new Vector2((roomSize.x - 4) / 2, 1);
-            bcNorth.offset = new Vector2((bcNorth.size.x / 2) + 1, -0.5f);
-            var bcNorth2 = room.gameObject.AddComponent<BoxCollider2D>();
-            bcNorth2.size = bcNorth.size;
-            bcNorth2.offset = new Vector2((bcNorth.size.x * 1.5f) + 3, -0.5f);
+            // North (interchange up/down!!!)
+            BoxCollider2D bcNorth = room.gameObject.AddComponent<BoxCollider2D>();
+            if (m_LevelMap.InBounds(pos + Vector2Int.down) && !m_LevelMap.IsEmpty(pos + Vector2Int.down))
+            {
+                bcNorth.size = new Vector2((controls.roomSize.x - 4) / 2, 1);
+                bcNorth.offset = new Vector2((bcNorth.size.x / 2) + 1, -0.5f);
+                var bcNorth2 = room.gameObject.AddComponent<BoxCollider2D>();
+                bcNorth2.size = bcNorth.size;
+                bcNorth2.offset = new Vector2((bcNorth.size.x * 1.5f) + 3, -0.5f);
+                // Add trigger
+                BoxCollider2D trNorth = room.gameObject.AddComponent<BoxCollider2D>();
+                trNorth.size = new Vector2(2.0f, .5f);
+                trNorth.offset = new Vector2(controls.roomSize.x / 2, -0.25f);
+                trNorth.isTrigger = true;
+            }
+            else
+            {
+                bcNorth.size = new Vector2(controls.roomSize.x - 2, 1);
+                bcNorth.offset = new Vector2(controls.roomSize.x / 2, -0.5f);
+            }
+
+            // South (interchange up/down!!!)
+            BoxCollider2D bcSouth = room.gameObject.AddComponent<BoxCollider2D>();
+            if (m_LevelMap.InBounds(pos + Vector2Int.up) && !m_LevelMap.IsEmpty(pos + Vector2Int.up))
+            {
+                bcSouth.size = new Vector2((controls.roomSize.x - 4) / 2, 1);
+                bcSouth.offset = new Vector2((bcSouth.size.x / 2) + 1, -controls.roomSize.y + 0.5f);
+                var bcSouth2 = room.gameObject.AddComponent<BoxCollider2D>();
+                bcSouth2.size = bcSouth.size;
+                bcSouth2.offset = new Vector2((bcSouth.size.x * 1.5f) + 3, -controls.roomSize.y + 0.5f);
+                // Add trigger
+                BoxCollider2D trSouth = room.gameObject.AddComponent<BoxCollider2D>();
+                trSouth.size = new Vector2(2.0f, .5f);
+                trSouth.offset = new Vector2(controls.roomSize.x / 2, -controls.roomSize.y + 0.25f);
+                trSouth.isTrigger = true;
+            }
+            else
+            {
+                bcSouth.size = new Vector2(controls.roomSize.x - 2, 1);
+                bcSouth.offset = new Vector2(controls.roomSize.x / 2, -controls.roomSize.y + 0.5f);
+            }
+
+            // West 
+            BoxCollider2D bcWest = room.gameObject.AddComponent<BoxCollider2D>();
+            if (m_LevelMap.InBounds(pos + Vector2Int.left) && !m_LevelMap.IsEmpty(pos + Vector2Int.left))
+            {
+                bcWest.size = new Vector2(1, (controls.roomSize.y - 2) / 2);
+                bcWest.offset = new Vector2(0.5f, -bcWest.size.y / 2);
+                var bcWest2 = room.gameObject.AddComponent<BoxCollider2D>();
+                bcWest2.size = bcWest.size;
+                bcWest2.offset = new Vector2(0.5f, -(bcWest.size.y * 1.5f) - 2);
+                // Add trigger
+                BoxCollider2D trWest = room.gameObject.AddComponent<BoxCollider2D>();
+                trWest.size = new Vector2(.5f, 2.0f);
+                trWest.offset = new Vector2(0.25f, -controls.roomSize.y / 2);
+                trWest.isTrigger = true;
+            }
+            else
+            {
+                bcWest.size = new Vector2(1, controls.roomSize.y);
+                bcWest.offset = new Vector2(0.5f, -controls.roomSize.y / 2);
+            }
+
+            // East 
+            BoxCollider2D bcEast = room.gameObject.AddComponent<BoxCollider2D>();
+            if (m_LevelMap.InBounds(pos + Vector2Int.right) && !m_LevelMap.IsEmpty(pos + Vector2Int.right))
+            {
+                bcEast.size = new Vector2(1, (controls.roomSize.y - 2) / 2);
+                bcEast.offset = new Vector2(controls.roomSize.x - 0.5f, -bcEast.size.y / 2);
+                var bcEast2 = room.gameObject.AddComponent<BoxCollider2D>();
+                bcEast2.size = bcEast.size;
+                bcEast2.offset = new Vector2(controls.roomSize.x - 0.5f, -(bcEast.size.y * 1.5f) - 2);
+                // Add trigger
+                BoxCollider2D trEast = room.gameObject.AddComponent<BoxCollider2D>();
+                trEast.size = new Vector2(.5f, 2.0f);
+                trEast.offset = new Vector2(controls.roomSize.x - 0.25f, -controls.roomSize.y / 2);
+                trEast.isTrigger = true;
+            }
+            else
+            {
+                bcEast.size = new Vector2(1, controls.roomSize.y);
+                bcEast.offset = new Vector2(controls.roomSize.x - 0.5f, -controls.roomSize.y / 2);
+            }
         }
-        else
-        {
-            bcNorth.size = new Vector2(roomSize.x - 2, 1);
-            bcNorth.offset = new Vector2(roomSize.x / 2, -0.5f);
-        }
-        // South (interchange up/down!!!)
-        BoxCollider2D bcSouth = room.gameObject.AddComponent<BoxCollider2D>();
-        if (m_LevelMap.InBounds(pos + Vector2Int.up) && ! m_LevelMap.IsEmpty(pos + Vector2Int.up))
-        {
-            bcSouth.size = new Vector2((roomSize.x - 4) / 2, 1);
-            bcSouth.offset = new Vector2((bcSouth.size.x / 2) + 1, -roomSize.y + 0.5f);
-            var bcSouth2 = room.gameObject.AddComponent<BoxCollider2D>();
-            bcSouth2.size = bcSouth.size;
-            bcSouth2.offset = new Vector2((bcSouth.size.x * 1.5f) + 3, -roomSize.y + 0.5f);
-        }
-        else
-        {
-            bcSouth.size = new Vector2(roomSize.x - 2, 1);
-            bcSouth.offset = new Vector2(roomSize.x / 2, -roomSize.y +0.5f);
-        }
-        // West 
-        BoxCollider2D bcWest = room.gameObject.AddComponent<BoxCollider2D>();
-        if (m_LevelMap.InBounds(pos + Vector2Int.left) && ! m_LevelMap.IsEmpty(pos + Vector2Int.left))
-        {
-            bcWest.size = new Vector2(1, (roomSize.y - 2) / 2);
-            bcWest.offset = new Vector2(0.5f, -bcWest.size.y / 2);
-            var bcWest2 = room.gameObject.AddComponent<BoxCollider2D>();
-            bcWest2.size = bcWest.size;
-            bcWest2.offset = new Vector2(0.5f, -(bcWest.size.y * 1.5f) - 2);
-        }
-        else
-        {
-            bcWest.size = new Vector2(1, roomSize.y);
-            bcWest.offset = new Vector2(0.5f, -roomSize.y / 2);
-        }
-        // East 
-        BoxCollider2D bcEast = room.gameObject.AddComponent<BoxCollider2D>();
-        if (m_LevelMap.InBounds(pos + Vector2Int.right) && ! m_LevelMap.IsEmpty(pos + Vector2Int.right))
-        {
-            bcEast.size = new Vector2(1, (roomSize.y - 2) / 2);
-            bcEast.offset = new Vector2(roomSize.x - 0.5f, -bcEast.size.y / 2);
-            var bcEast2 = room.gameObject.AddComponent<BoxCollider2D>();
-            bcEast2.size = bcEast.size;
-            bcEast2.offset = new Vector2(roomSize.x - 0.5f, -(bcEast.size.y * 1.5f) - 2);
-        }
-        else
-        {
-            bcEast.size = new Vector2(1, roomSize.y);
-            bcEast.offset = new Vector2(roomSize.x - 0.5f, -roomSize.y / 2);
-        }
+        // Doors
     }
     
     private void CreateFloor()
@@ -118,14 +141,19 @@ public class MapGenerator : MonoBehaviour
             if (t != RoomType.None)
             {
                 var go = Instantiate(roomPrefabs[random.Next(0, roomPrefabs.Count)], transform);
-                go.transform.position = new Vector3(singlePos.x * roomSize.x, singlePos.y * roomSize.y * -1, 0);
+                go.transform.position = new Vector3(singlePos.x * controls.roomSize.x, singlePos.y * controls.roomSize.y * -1, 0);
+                ChangeRoom cr = go.AddComponent<ChangeRoom>();
+                cr.roomPosition = singlePos;
+                cr.playerCharacters = playerCharacters;
                 AddColliders(go, singlePos);
+                controls.rooms[singlePos] = go;
                 if (t == RoomType.Start)
                 {
-                    Vector3 nPos = new Vector3((singlePos.x + 0.5f) * roomSize.x, (singlePos.y + 0.5f) * roomSize.y * -1, -10);
+                    Vector3 nPos = new Vector3((singlePos.x + 0.5f) * controls.roomSize.x, (singlePos.y + 0.5f) * controls.roomSize.y * -1, -10);
                     Camera.main.transform.position = nPos;
-                    nPos.z = -0.2f;
+                    nPos.z = 0;
                     playerCharacters.ForEach(pl => pl.transform.position = nPos); 
+                    controls.SetCurRoom(singlePos);
                 }
             }
         }
