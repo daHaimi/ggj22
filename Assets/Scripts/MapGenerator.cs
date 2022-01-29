@@ -5,13 +5,15 @@ using System.Linq;
 using Models;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = System.Random;
 
 public class MapGenerator : MonoBehaviour
 {
-    [SerializeField] public Image prefab;
-    [SerializeField] public GameObject MiniMap; 
+    public List<GameObject> playerCharacters;
+    public List<GameObject> roomPrefabs;
+    public Vector2 roomSize;
     [SerializeField] public int mapSize; 
     [SerializeField] public int seed; 
     private LevelMap m_LevelMap;
@@ -21,6 +23,7 @@ public class MapGenerator : MonoBehaviour
     {
         m_LevelMap = new LevelMap(Vector2Int.one * mapSize);
         GenerateMap();
+        CreateFloor();
     }
 
     // Update is called once per frame
@@ -34,39 +37,35 @@ public class MapGenerator : MonoBehaviour
         PlaceRooms();
         Pathfind();
         Debug.Log(m_LevelMap);
-        DisplayMiniMap();
     }
 
-    private void DisplayMiniMap()
+    void CreateFloor()
     {
+        var random = new Random(seed);
+        int y = 0;
         foreach (var singlePos in new RectInt(Vector2Int.zero, m_LevelMap.size).allPositionsWithin)
         {
-            Image room = Instantiate(prefab, MiniMap.transform);
-            switch (m_LevelMap[singlePos])
+            if (singlePos.y != y)
             {
-                case RoomType.None:
-                    room.material.color = Color.clear;
-                    break;
-                case RoomType.Default:
-                    room.material.color = Color.gray;
-                    break;
-                case RoomType.Start:
-                    room.material.color = Color.green;
-                    break;
-                case RoomType.Item:
-                    room.material.color = Color.yellow;
-                    break;
-                case RoomType.Boss:
-                    room.material.color = Color.red;
-                    break;
-                case RoomType.Hidden:
-                    room.material.color = Color.black;
-                    break;
+                y = singlePos.y;
+            }
 
+            RoomType t = m_LevelMap[singlePos];
+            if (t != RoomType.None)
+            {
+                var go = Instantiate(roomPrefabs[random.Next(0, roomPrefabs.Count)], transform);
+                go.transform.position = new Vector3(singlePos.x * roomSize.x, singlePos.y * roomSize.y * -1, 0);
+                if (t == RoomType.Start)
+                {
+                    Vector3 nPos = new Vector3((singlePos.x + 0.5f) * roomSize.x, (singlePos.y + 0.5f) * roomSize.y * -1, -10);
+                    Camera.main.transform.position = nPos;
+                    nPos.z = -0.2f;
+                    playerCharacters.ForEach(pl => pl.transform.position = nPos); 
+                }
             }
         }
     }
-    
+
     private void PlaceRooms()
     {
         var random = new Random(seed);

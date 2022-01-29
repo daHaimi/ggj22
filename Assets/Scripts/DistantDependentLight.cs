@@ -16,6 +16,6 @@ public class DistantDependentLight : MonoBehaviour
     void Update()
     {
         float dist = Vector2.Distance(transform.position, other.transform.position);
-        GetComponent<Light>().range = 5 - dist;
+        GetComponent<Light>().range = 10 - (dist * 2);
     }
 }
