@@ -41,6 +41,15 @@ public class RoomTileController : MonoBehaviour
                 col.gameObject.AddComponent<PressurePlateHandler>().rtc = this;
             }
         }
+
+        Transform tSpawner = transform.Find("Grid").Find("spawn");
+        if (tSpawner)
+        {
+            foreach (Collider2D col in tSpawner.GetComponentsInChildren<Collider2D>())
+            {
+                col.isTrigger = true;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
