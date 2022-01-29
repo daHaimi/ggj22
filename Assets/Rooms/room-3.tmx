@@ -46,6 +46,10 @@
   <object id="4" name="spawn_2" x="224" y="16" width="48" height="48"/>
   <object id="5" name="spawn_3" x="224" y="160" width="48" height="48"/>
   <object id="6" name="spawn_4" x="16" y="160" width="48" height="48"/>
-  <object id="7" name="spawn_5" x="112" y="96" width="64" height="32"/>
+  <object id="7" name="spawn_5" x="112" y="96" width="64" height="32">
+   <properties>
+    <property name="unity:IsTrigger&#9;" type="bool" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

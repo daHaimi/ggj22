@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="18" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="10">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="18" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="10">
  <tileset firstgid="1" source="room-tiles.tsx"/>
  <layer id="1" name="bg" width="18" height="14">
   <data encoding="csv">
@@ -37,13 +37,34 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <layer id="11" name="bg3" width="18" height="14">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,78,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
  <layer id="5" name="fg" width="18" height="14">
+  <properties>
+   <property name="unity:SortingLayer" value="Foreground"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,47,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,78,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -78,9 +99,12 @@
   <object id="2" x="187.091" y="58.1818" width="85.0909" height="17.0909"/>
  </objectgroup>
  <objectgroup id="9" name="collision">
-  <object id="3" x="180" y="67.6364" width="7.45455" height="9.27273"/>
+  <object id="3" x="180" y="64.0114" width="7.45455" height="12.8977"/>
  </objectgroup>
  <objectgroup id="10" name="spawn">
+  <properties>
+   <property name="unity:IsTrigger&#9;" type="bool" value="true"/>
+  </properties>
   <object id="5" name="spawn_1" x="16" y="16" width="48" height="48"/>
   <object id="6" name="spawn_2" x="16" y="160" width="48" height="48"/>
   <object id="8" name="spawn_3" x="224" y="160" width="48" height="48"/>

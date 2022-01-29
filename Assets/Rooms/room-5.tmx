@@ -56,6 +56,9 @@
 </data>
  </layer>
  <layer id="4" name="fg" width="18" height="14">
+  <properties>
+   <property name="unity:SortingLayer" value="Foreground"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -78,9 +81,14 @@
   <object id="2" x="117.375" y="134.375" width="5.5" height="5.875"/>
  </objectgroup>
  <objectgroup id="6" name="spawn">
+  <properties>
+   <property name="unity:IsTrigger&#9;" type="bool" value="true"/>
+   <property name="unity:isTrigger" type="bool" value="true"/>
+  </properties>
   <object id="4" name="spawn_1" x="16" y="16" width="80" height="48">
    <properties>
     <property name="count" type="int" value="1"/>
+    <property name="unity:IsTrigger&#9;" type="bool" value="true"/>
    </properties>
   </object>
   <object id="5" name="spawn_2" x="192" y="16" width="80" height="48">
