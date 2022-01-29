@@ -47,8 +47,11 @@ public class PlayerControls : MonoBehaviour
 
         lookDirection = GetComponent<Rigidbody2D>().velocity;
         lookDirection.Normalize();
-        animator.SetFloat("Look X", lookDirection.x);
-        animator.SetFloat("Look Y", lookDirection.y);
-        animator.SetFloat("Speed", lookDirection.magnitude);
+        if (animator)
+        {
+            animator.SetFloat("Look X", lookDirection.x);
+            animator.SetFloat("Look Y", lookDirection.y);
+            animator.SetFloat("Speed", lookDirection.magnitude);
+        }
     }
 }
