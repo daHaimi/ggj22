@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
-    [SerializeField] public float dampen = 300;
+    [SerializeField] public float speed = 100;
 
     public bool RightStick;
     // Start is called before the first frame update
@@ -14,7 +14,7 @@ public class PlayerControls : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector2 vec;
         if (RightStick)
@@ -23,6 +23,6 @@ public class PlayerControls : MonoBehaviour
         } else { 
             vec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         }
-        GetComponent<Rigidbody2D>().AddForce(vec / dampen);
+        GetComponent<Rigidbody2D>().AddForce(vec * speed);
     }
 }
