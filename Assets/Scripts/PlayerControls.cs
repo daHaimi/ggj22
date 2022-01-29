@@ -11,10 +11,14 @@ public class PlayerControls : MonoBehaviour
     public bool RightStick;
 
     private GameControls controls;
+    private Animator animator;
+
+    private Vector2 lookDirection = new Vector2(1, 0);
     // Start is called before the first frame update
     void Start()
     {
         controls = Camera.main.GetComponent<GameControls>();
+        animator = this.GetComponent<Animator>();
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -40,5 +44,11 @@ public class PlayerControls : MonoBehaviour
             vec = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         }
         GetComponent<Rigidbody2D>().AddForce(vec * speed);
+
+        lookDirection = GetComponent<Rigidbody2D>().velocity;
+        lookDirection.Normalize();
+        animator.SetFloat("Look X", lookDirection.x);
+        animator.SetFloat("Look Y", lookDirection.y);
+        animator.SetFloat("Speed", lookDirection.magnitude);
     }
 }
