@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="18" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="3">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="18" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="8">
  <tileset firstgid="1" source="room-tiles.tsx"/>
  <layer id="1" name="bg" width="18" height="14">
   <data encoding="csv">
@@ -40,5 +40,16 @@
  <objectgroup id="3" name="collision_hole" opacity="0.08">
   <object id="1" x="112" y="48" width="64" height="48"/>
   <object id="2" x="112" y="128" width="64" height="48"/>
+ </objectgroup>
+ <objectgroup id="4" name="spawn">
+  <object id="3" name="spawn_1" x="16" y="16" width="48" height="48"/>
+  <object id="4" name="spawn_2" x="224" y="16" width="48" height="48"/>
+  <object id="5" name="spawn_3" x="224" y="160" width="48" height="48"/>
+  <object id="6" name="spawn_4" x="16" y="160" width="48" height="48"/>
+  <object id="7" name="spawn_5" x="112" y="96" width="64" height="32">
+   <properties>
+    <property name="unity:IsTrigger&#9;" type="bool" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
