@@ -20,7 +20,7 @@ public class PlayerControls : MonoBehaviour
     void Start()
     {
         controls = Camera.main.GetComponent<GameControls>();
-        animator = this.GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         player = Camera.main.GetComponent<AudioSource>();
     }
 

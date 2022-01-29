@@ -60,7 +60,8 @@ public class RoomBehaviour : MonoBehaviour
                     else
                     {
                         // Spawn enemies
-                        Instantiate(controls.enemyPrefabs[0], center, Quaternion.identity);
+                        Instantiate(controls.enemyPrefabs[1], center, Quaternion.identity);
+                        //Instantiate(controls.enemyPrefabs[random.Next(0, controls.enemyPrefabs.Count)], center, Quaternion.identity);
                     }
                     Destroy(col);
                 }
