@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="18" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="18" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="1">
  <tileset firstgid="1" source="room-tiles.tsx"/>
  <layer id="1" name="bg" width="18" height="14">
   <data encoding="csv">
@@ -26,10 +26,10 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,38,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,38,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,38,38,38,38,38,38,38,0,0,0,0,0,0,
-0,0,0,0,0,0,38,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,38,0,0,0,0,0,0,0,0,0,0,
+165,0,0,0,0,0,38,0,0,0,0,0,0,0,0,0,0,0,
+1,0,0,0,0,38,38,38,38,38,38,38,0,0,0,0,0,0,
+1,0,0,0,0,0,38,0,0,0,0,0,0,0,0,0,0,0,
+133,0,0,0,0,0,0,38,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
