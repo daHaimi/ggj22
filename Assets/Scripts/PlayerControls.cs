@@ -3,17 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using Models;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControls : MonoBehaviour
 {
     [SerializeField] public GameObject otherPlayer;
     [SerializeField] public float speed = 100;
+    public GameObject hitpointsText;
 
     public bool RightStick;
 
     private GameControls controls;
     private Animator animator;
     private AudioSource player;
+    private float iFrames;
 
     private Vector2 lookDirection = new Vector2(1, 0);
     // Start is called before the first frame update
@@ -29,11 +32,29 @@ public class PlayerControls : MonoBehaviour
         if (other.gameObject.CompareTag("Pickup"))
         {
             Pickup p = other.gameObject.GetComponent<Pickup>();
-            controls.playerCapabilities.pickups[p.type]++;
+            if (p.type == PickupType.Heart) GainLife();
+            else controls.playerCapabilities.pickups[p.type]++;
             player.clip = p.pickupSound;
             player.Play();
             Destroy(other.gameObject);
         }
+
+        if (other.gameObject.CompareTag("Enemy") && iFrames <= 0)
+        {
+            LoseLife();
+            hitpointsText.GetComponent<Text>().text = "" + controls.playerCapabilities.life[RightStick ? 1 : 0].current;
+            iFrames = .5f;
+        }
+    }
+
+    private void LoseLife()
+    {
+        controls.playerCapabilities.life[RightStick ? 1 : 0].current--;
+    }
+    
+    private void GainLife()
+    {
+        controls.playerCapabilities.life[RightStick ? 1 : 0].current++;
     }
     
     private void OnTriggerStay2D(Collider2D other)
@@ -60,6 +81,11 @@ public class PlayerControls : MonoBehaviour
         }
         GetComponent<Rigidbody2D>().AddForce(vec * speed);
 
+        if (iFrames > 0)
+        {
+            iFrames -= Time.deltaTime;
+        }
+        
         UpdateLookDirection();
 
         // float distance = Vector2.Distance(transform.position, otherPlayer.transform.position);

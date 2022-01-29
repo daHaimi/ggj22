@@ -45,13 +45,13 @@ public class RoomBehaviour : MonoBehaviour
                     Vector3 center = col.transform.position + (Vector3)(col.offset + col.size / 2 * new Vector2(1, -1));
                     virgin = false; // defloration
                     // Spawn enemies or pickups (3/1)
-                    if (random.Next(0, 3) == 1)
+                    if (random.Next(0, 3) == 0)
                     {
                         // Spawn pickups; 50% coin, 25% heart, 25% key
                         PickupType puType;
                         int put = random.Next(0, 3);
                         put = 5;
-                        if (put == 0) puType = PickupType.Heart;
+                        if (put == 0 || put == 1) puType = PickupType.Heart;
                         else if (put == 1) puType = PickupType.Key;
                         else puType = PickupType.Coin;
                 
@@ -60,8 +60,8 @@ public class RoomBehaviour : MonoBehaviour
                     else
                     {
                         // Spawn enemies
-                        Instantiate(controls.enemyPrefabs[1], center, Quaternion.identity);
-                        //Instantiate(controls.enemyPrefabs[random.Next(0, controls.enemyPrefabs.Count)], center, Quaternion.identity);
+                        //Instantiate(controls.enemyPrefabs[1], center, Quaternion.identity);
+                        Instantiate(controls.enemyPrefabs[random.Next(0, controls.enemyPrefabs.Count)], center, Quaternion.identity);
                     }
                     Destroy(col);
                 }
