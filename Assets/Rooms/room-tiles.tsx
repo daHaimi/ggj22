@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.5" tiledversion="1.7.2" name="room-tiles" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
  <image source="room-tiles.png" width="512" height="512"/>
+ <tile id="9">
+  <animation>
+   <frame tileid="6" duration="1000"/>
+   <frame tileid="8" duration="1000"/>
+  </animation>
+ </tile>
  <wangsets>
   <wangset name="room" type="corner" tile="-1">
    <wangcolor name="" color="#ff0000" tile="-1" probability="1"/>
