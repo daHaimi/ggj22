@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Models;
 using UnityEngine;
 
 public class GameControls : MonoBehaviour
@@ -7,12 +8,13 @@ public class GameControls : MonoBehaviour
     public Vector2 roomSize;
     public Vector2 curRoom;
     public Bounds curRoomBounds;
-    public Dictionary<Vector2, GameObject> rooms;
+    public List<GameObject> player;
+    public Dictionary<Vector2, GameObject> rooms = new Dictionary<Vector2, GameObject>();
+    public PlayerCapabilities playerCapabilities = new PlayerCapabilities();
     
     // Start is called before the first frame update
     void Start()
     {
-        rooms = new Dictionary<Vector2, GameObject>();
     }
 
     public void SetCurRoom(Vector2 cur)

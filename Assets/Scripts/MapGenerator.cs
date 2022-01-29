@@ -12,7 +12,6 @@ using Random = System.Random;
 
 public class MapGenerator : MonoBehaviour
 {
-    public List<GameObject> playerCharacters;
     public List<GameObject> roomPrefabs;
     [SerializeField] public int mapSize; 
     [SerializeField] public int seed; 
@@ -154,7 +153,7 @@ public class MapGenerator : MonoBehaviour
                 go.transform.position = new Vector3(singlePos.x * controls.roomSize.x, singlePos.y * controls.roomSize.y * -1, 0);
                 ChangeRoom cr = go.AddComponent<ChangeRoom>();
                 cr.roomPosition = singlePos;
-                cr.playerCharacters = playerCharacters;
+                cr.playerCharacters = controls.player;
                 AddColliders(go, singlePos);
                 controls.rooms[singlePos] = go;
                 if (t == RoomType.Start)
@@ -162,7 +161,7 @@ public class MapGenerator : MonoBehaviour
                     Vector3 nPos = new Vector3((singlePos.x + 0.5f) * controls.roomSize.x, (singlePos.y + 0.5f) * controls.roomSize.y * -1, -10);
                     Camera.main.transform.position = nPos;
                     nPos.z = 0;
-                    playerCharacters.ForEach(pl => pl.transform.position = nPos); 
+                    controls.player.ForEach(pl => pl.transform.position = nPos); 
                     controls.SetCurRoom(singlePos);
                 }
             }
