@@ -75,55 +75,45 @@ public class RoomBehaviour : MonoBehaviour
 
     public void EnterRoom()
     {
-        if (virgin)
+        if (!virgin) return;
+        var random = new Random(controls.seed);
+        foreach (var col in GetComponentsInChildren<BoxCollider2D>())
         {
-            if (type == RoomType.Boss)
+            if (!col.gameObject.name.StartsWith("spawn")) continue;
+            Vector3 center = col.transform.position + (Vector3)(col.offset + col.size / 2 * new Vector2(1, -1));
+            Debug.Log(center);
+            virgin = false; // defloration
+            // Spawn enemies or pickups (3/1)
+            Debug.Log(type);
+            Debug.Log(controls.bossPrefabs[0]);
+            
+            if (type == RoomType.Boss || random.Next(0, 3) > 0)
             {
-                Vector3 center = transform.position + (Vector3)(controls.roomSize / 2 * new Vector2(1, -1));
-                Instantiate(controls.bossPrefabs[0], center, Quaternion.identity);
+                GameObject prefab;
+                prefab = type == RoomType.Boss ? controls.bossPrefabs[0] : controls.enemyPrefabs[random.Next(0, controls.enemyPrefabs.Count)];
+                // Spawn enemies
+                //Instantiate(controls.enemyPrefabs[1], center, Quaternion.identity);
+                
+                var enemy = Instantiate(prefab, center, Quaternion.identity);
+                enemyCount += 1;
+                enemy.GetComponent<EnemyBase>().room = this.gameObject;
+            } else {
+                // Spawn pickups; 50% coin, 25% heart, 25% key
+                PickupType puType;
+                int put = random.Next(0, 3);
+                put = 5;
+                if (put == 0 || put == 1) puType = PickupType.Heart;
+                else if (put == 1) puType = PickupType.Key;
+                else puType = PickupType.Coin;
+                
+                Instantiate(controls.pickupPrefabs[(int) puType], center, Quaternion.identity);
             }
-            else
-            {
-                var random = new Random(controls.seed);
-                foreach (var col in GetComponentsInChildren<BoxCollider2D>())
-                {
-                    if (col.gameObject.name.StartsWith("spawn"))
-                    {
-                        Vector3 center = col.transform.position +
-                                         (Vector3)(col.offset + col.size / 2 * new Vector2(1, -1));
-                        virgin = false; // defloration
-                        // Spawn enemies or pickups (3/1)
-                        if (random.Next(0, 3) == 0)
-                        {
-                            // Spawn pickups; 50% coin, 25% heart, 25% key
-                            PickupType puType;
-                            int put = random.Next(0, 3);
-                            put = 5;
-                            if (put == 0 || put == 1) puType = PickupType.Heart;
-                            else if (put == 1) puType = PickupType.Key;
-                            else puType = PickupType.Coin;
+            Destroy(col);
+        }
 
-                            var pickup = Instantiate(controls.pickupPrefabs[(int)puType], center, Quaternion.identity);
-                        }
-                        else
-                        {
-                            // Spawn enemies
-                            //Instantiate(controls.enemyPrefabs[1], center, Quaternion.identity);
-                            var enemy = Instantiate(controls.enemyPrefabs[random.Next(0, controls.enemyPrefabs.Count)],
-                                center, Quaternion.identity);
-                            enemyCount += 1;
-                            enemy.GetComponent<EnemyBase>().room = this.gameObject;
-                        }
-
-                        Destroy(col);
-                    }
-
-                    if (enemyCount == 0)
-                    {
-                        OpenRoom();
-                    }
-                }
-            }
+        if (enemyCount == 0)
+        {
+            OpenRoom();
         }
     }
 }

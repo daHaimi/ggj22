@@ -21,6 +21,10 @@ public class GameControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (PlayerPrefs.HasKey("seed"))
+        {
+            seed = PlayerPrefs.GetInt("seed");
+        }
     }
 
     public void SetCurRoom(Vector2 cur)

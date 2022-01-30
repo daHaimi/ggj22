@@ -152,7 +152,7 @@ public class MapGenerator : MonoBehaviour
                 bcEast.size = new Vector2(1, controls.roomSize.y);
                 bcEast.offset = new Vector2(controls.roomSize.x - 0.5f, -controls.roomSize.y / 2);
                 TileBase wallEast = tm.GetTile(new Vector3Int(17, -9, 0));
-                for (int i = -8; i <= -5; i++) tm.SetTile(new Vector3Int(17, i, 0), wallEast);
+                for (int i = -7; i <= -6; i++) tm.SetTile(new Vector3Int(17, i, 0), wallEast);
             }
         }
         // Doors
@@ -172,7 +172,21 @@ public class MapGenerator : MonoBehaviour
             RoomType t = m_LevelMap[singlePos];
             if (t != RoomType.None)
             {
-                var go = Instantiate(roomPrefabs[random.Next(0, roomPrefabs.Count)], transform);
+                int prefabIndex;
+                switch (t)
+                {
+                    case RoomType.Start:
+                    case RoomType.Item:
+                        prefabIndex = 0;
+                        break;
+                    case RoomType.Boss:
+                        prefabIndex = roomPrefabs.Count - 1;
+                        break;
+                    default:
+                        prefabIndex = random.Next(0, roomPrefabs.Count - 1);
+                        break;
+                }
+                var go = Instantiate(roomPrefabs[prefabIndex], transform);
                 go.AddComponent<RoomTileController>();
                 go.transform.position = new Vector3(singlePos.x * controls.roomSize.x, singlePos.y * controls.roomSize.y * -1, 0);
                 RoomBehaviour room = go.AddComponent<RoomBehaviour>();
