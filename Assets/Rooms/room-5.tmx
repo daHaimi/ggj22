@@ -78,7 +78,7 @@
  </layer>
  <objectgroup id="5" name="collision">
   <object id="1" type="hole" x="16" y="144" width="96" height="64"/>
-  <object id="2" x="117.375" y="134.375" width="5.5" height="5.875"/>
+  <object id="2" x="117.375" y="128.027" width="5.5" height="12.2228"/>
  </objectgroup>
  <objectgroup id="6" name="spawn">
   <properties>

@@ -8,6 +8,7 @@ public class EnemyBase : MonoBehaviour
     public float hitpoints;
     public GameObject drop;
     public Animator anim;
+    public GameObject room;
 
     protected void Initialize()
     {
@@ -46,6 +47,7 @@ public class EnemyBase : MonoBehaviour
         {
             Instantiate(drop, transform.position, transform.rotation);
         }
+        room.GetComponent<RoomBehaviour>().RemoveEnemy(this.gameObject);
         Destroy(gameObject);
     }
 }

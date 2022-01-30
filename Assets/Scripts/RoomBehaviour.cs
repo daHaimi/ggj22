@@ -2,7 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Models;
+using SuperTiled2Unity;
+using SuperTiled2Unity.Editor;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Random = System.Random;
 
 public class RoomBehaviour : MonoBehaviour
@@ -10,6 +13,7 @@ public class RoomBehaviour : MonoBehaviour
     public RoomType type;
     public bool virgin = true;
 
+    private int enemyCount;
     private GameControls controls;
     
     // Start is called before the first frame update
@@ -32,6 +36,36 @@ public class RoomBehaviour : MonoBehaviour
     {
         
     }
+
+    public void RemoveEnemy(GameObject enemyGo)
+    {
+        enemyCount -= 1;
+        if (enemyCount < 1)
+        {
+            OpenRoom();
+        }
+    }
+
+
+    public void OpenRoom()
+    {
+        Tilemap tm = this.gameObject.GetComponentsInChildren<Tilemap>()[1];
+        controls = Camera.main.GetComponent<GameControls>();
+        SuperTileset tileSet = controls.roomTileset;
+        tileSet.TryGetTile(166, out SuperTile door_o_n);
+        tileSet.TryGetTile(201, out SuperTile door_o_e);
+        tileSet.TryGetTile(198, out SuperTile door_o_w);
+        for (int i = 8; i <= 9; i++) tm.SetTile(new Vector3Int(i, 0, 0), door_o_n);
+        for (int i = 8; i <= 9; i++) tm.SetTile(new Vector3Int(i, -13, 0), door_o_n);
+        for (int i = -7; i <= -6; i++) tm.SetTile(new Vector3Int(0, i, 0), door_o_w);
+        for (int i = -7; i <= -6; i++) tm.SetTile(new Vector3Int(17, i, 0), door_o_e);
+        foreach (Collider2D col in tm.gameObject.GetComponents<Collider2D>())
+        {
+            Destroy(col);
+        }
+
+    }
+    
 
     public void EnterRoom()
     {
@@ -62,13 +96,15 @@ public class RoomBehaviour : MonoBehaviour
                             else if (put == 1) puType = PickupType.Key;
                             else puType = PickupType.Coin;
                     
-                            Instantiate(controls.pickupPrefabs[(int) puType], center, Quaternion.identity);
+                            var pickup = Instantiate(controls.pickupPrefabs[(int) puType], center, Quaternion.identity);
                         }
                         else
                         {
                             // Spawn enemies
                             //Instantiate(controls.enemyPrefabs[1], center, Quaternion.identity);
-                            Instantiate(controls.enemyPrefabs[random.Next(0, controls.enemyPrefabs.Count)], center, Quaternion.identity);
+                            var enemy = Instantiate(controls.enemyPrefabs[random.Next(0, controls.enemyPrefabs.Count)], center, Quaternion.identity);
+                            enemyCount += 1;
+                            enemy.GetComponent<EnemyBase>().room = this.gameObject;
                         }
                         Destroy(col);
                     }

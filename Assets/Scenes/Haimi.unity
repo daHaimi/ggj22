@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 80431758}
   - component: {fileID: 80431756}
   - component: {fileID: 80431755}
+  - component: {fileID: 80431761}
   - component: {fileID: 80431757}
   - component: {fileID: 80431760}
   m_Layer: 0
@@ -172,7 +173,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 0.19634955
+  m_Mass: 0.2906223
   m_LinearDrag: 15
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -204,7 +205,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 80431753}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -272,8 +273,7 @@ SpriteRenderer:
   m_SortingLayerID: -265532881
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1062064769042425764, guid: f0efeae2d00eb786295dea1166f7d2b6,
-    type: 3}
+  m_Sprite: {fileID: 1062064769042425764, guid: f0efeae2d00eb786295dea1166f7d2b6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -296,8 +296,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b26f7983ba85deaca81fc6b7927929f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pfeilPrefab: {fileID: 6134174148727049570, guid: 796c52e2d0d89dfd3bea5d11e63fe78d,
-    type: 3}
+  pfeilPrefab: {fileID: 6134174148727049570, guid: 796c52e2d0d89dfd3bea5d11e63fe78d, type: 3}
+--- !u!61 &80431761
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80431753}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.04983425, y: -0.29900527}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6677723, y: 0.43521166}
+  m_EdgeRadius: 0
 --- !u!1 &226696539
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,6 +590,7 @@ GameObject:
   - component: {fileID: 632028727}
   - component: {fileID: 632028724}
   - component: {fileID: 632028725}
+  - component: {fileID: 632028728}
   - component: {fileID: 632028726}
   m_Layer: 0
   m_Name: Pollux
@@ -616,7 +642,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 0.19634955
+  m_Mass: 0.25267762
   m_LinearDrag: 15
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -632,7 +658,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 632028722}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -681,8 +707,7 @@ SpriteRenderer:
   m_SortingLayerID: -265532881
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7,
-    type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0.2784314, g: 0.056737266, b: 0.4811321, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -693,6 +718,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &632028728
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632028722}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.006201029, y: -0.31005645}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6651387, y: 0.3798871}
+  m_EdgeRadius: 0
 --- !u!1 &805056218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,6 +1269,7 @@ MonoBehaviour:
   - {fileID: 8833622983824538842, guid: 0db44e5104b994fdf8b56dfd8ab1c56e, type: 3}
   bossPrefabs:
   - {fileID: 1283034132630604185, guid: e49f7fd1645c7c53abc54b349a9c130c, type: 3}
+  roomTileset: {fileID: -7126433371136705374, guid: ae3e1b3d6b06a8888909a24e25063f48, type: 3}
 --- !u!114 &1768469536
 MonoBehaviour:
   m_ObjectHideFlags: 0

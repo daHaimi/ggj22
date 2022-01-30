@@ -40,8 +40,8 @@ public class ChangeRoom : MonoBehaviour
         StartCoroutine(LerpPosition(target));
 
         Vector3 newPos = trigger.transform.position;
-        newPos.x += direction.x * 1.5f;
-        newPos.y += direction.y * 1.5f;
+        newPos.x += direction.x * 2.4f;
+        newPos.y += direction.y * 2.4f;
         trigger.GetComponent<Rigidbody2D>().transform.position = newPos;
         trigger.GetComponent<PlayerControls>().otherPlayer.transform.position = newPos;
         // Update Room
