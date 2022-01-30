@@ -25,6 +25,11 @@ public class GameControls : MonoBehaviour
         curRoom = cur;
         curRoomBounds = new Bounds(rooms[cur].transform.position + new Vector3(roomSize.x / 2, roomSize.y / -2), roomSize);
     }
+
+    public GameObject GetCurRoomGameObject()
+    {
+        return rooms[curRoom].gameObject;
+    }
     
     // Update is called once per frame
     void Update()
