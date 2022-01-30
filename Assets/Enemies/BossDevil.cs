@@ -48,7 +48,7 @@ public class BossDevil : EnemyBase
             {
                 targetPosition = GetRandomTarget();
                 PointToTarget();
-                curAction = random.Next(0, 1) == 0 ? BossAction.Jump : BossAction.Spawn;
+                curAction = controls.GetRandom(3) == 1 ? BossAction.Jump : BossAction.Spawn;
             }
             actionTimer = 1.5f;
         }
@@ -76,7 +76,7 @@ public class BossDevil : EnemyBase
         float angle = Vector3.Angle(transform.position, targetPosition);
         ParticleSystem pSys = GetComponent<ParticleSystem>();
         ParticleSystem.ShapeModule shape = pSys.shape;
-        shape.rotation += Vector3.forward * angle;
+        //shape.rotation = Quaternion.AngleAxis(angle, Vector3.forward) * new Vector3(0f, 90f, 0f);
         pSys.Play();
     }
 

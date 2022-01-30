@@ -78,34 +78,50 @@ public class RoomBehaviour : MonoBehaviour
         foreach (var col in GetComponentsInChildren<BoxCollider2D>())
         {
             if (!col.gameObject.name.StartsWith("spawn")) continue;
-            Vector3 center = col.transform.position + (Vector3)(col.offset + col.size / 2 * new Vector2(1, -1));
-            Debug.Log(center);
-            virgin = false; // defloration
-            // Spawn enemies or pickups (3/1)
-            Debug.Log(type);
-            Debug.Log(controls.bossPrefabs[0]);
-            
-            if (type == RoomType.Boss || controls.GetRandom(4) > 1)
+            var props = col.gameObject.GetComponent<SuperCustomProperties>();
+            int num = 1;
+            CustomProperty numProp;
+            if (props.TryGetCustomProperty("count", out numProp))
             {
-                GameObject prefab;
-                prefab = type == RoomType.Boss ? controls.bossPrefabs[0] : controls.enemyPrefabs[controls.GetRandom(controls.enemyPrefabs.Count) - 1];
-                // Spawn enemies
-                //Instantiate(controls.enemyPrefabs[1], center, Quaternion.identity);
-                
-                var enemy = Instantiate(prefab, center, Quaternion.identity);
-                enemyCount += 1;
-                enemy.GetComponent<EnemyBase>().room = this.gameObject;
-            } else {
-                // Spawn pickups; 50% coin, 25% heart, 25% key
-                PickupType puType;
-                int put = controls.GetRandom(3);
-                if (put == 0 || put == 1) puType = PickupType.Coin;
-                else if (put == 2) puType = PickupType.Heart;
-                else puType = PickupType.Key;
-                
-                Instantiate(controls.pickupPrefabs[(int) puType], center, Quaternion.identity);
+                num = numProp.GetValueAsInt();
             }
-            Destroy(col);
+            for (int i = 0; i < num; i++)
+            {
+                Vector3 center = col.transform.position + new Vector3(
+                    col.offset.x - controls.GetRandom((int)col.size.x),
+                    col.offset.y - controls.GetRandom((int)col.size.y)
+                );
+                Debug.Log(center);
+                virgin = false; // defloration
+                // Spawn enemies or pickups (3/1)
+                Debug.Log(type);
+
+                if (type == RoomType.Boss || controls.GetRandom(5) > 1)
+                {
+                    GameObject prefab;
+                    prefab = type == RoomType.Boss
+                        ? controls.bossPrefabs[0]
+                        : controls.enemyPrefabs[controls.GetRandom(controls.enemyPrefabs.Count) - 1];
+                    // Spawn enemies
+                    //Instantiate(controls.enemyPrefabs[1], center, Quaternion.identity);
+
+                    var enemy = Instantiate(prefab, center, Quaternion.identity);
+                    enemyCount += 1;
+                    enemy.GetComponent<EnemyBase>().room = this.gameObject;
+                }
+                else
+                {
+                    // Spawn pickups; 50% coin, 25% heart, 25% key
+                    PickupType puType;
+                    int put = controls.GetRandom(4) - 1;
+                    if (put == 0 || put == 1) puType = PickupType.Coin;
+                    else puType = PickupType.Heart;
+
+                    Instantiate(controls.pickupPrefabs[(int) puType], center, Quaternion.identity);
+                }
+
+                Destroy(col);
+            }
         }
 
         if (enemyCount == 0)
