@@ -28,10 +28,10 @@ public class BossDevil : EnemyBase
         actionTimer -= Time.deltaTime;
         if (actionTimer <= 0)
         {
-            // Wait if prev. ACtion was active
+            // Wait if prev. Action was active
             if (curAction != BossAction.Wait)
             {
-                Destroy(gameObject.GetComponent<LineRenderer>());
+                gameObject.GetComponent<LineRenderer>().enabled = false;
                 if (curAction == BossAction.Jump)
                 {
                     GetComponent<Rigidbody2D>().MovePosition(targetPosition);
@@ -47,6 +47,7 @@ public class BossDevil : EnemyBase
             {
                 targetPosition = GetRandomTarget();
                 PointToTarget();
+                curAction = random.Next(0, 1) == 0 ? BossAction.Jump : BossAction.Spawn;
             }
             actionTimer = 1.5f;
         }
@@ -55,31 +56,33 @@ public class BossDevil : EnemyBase
     Vector2 GetRandomTarget()
     {
         Vector3 result;
-        Collider2D[] roomColliders = controls.rooms[controls.curRoom].GetComponentsInChildren<Collider2D>();
+        GameObject curRoom = controls.rooms[controls.curRoom];
+        Collider2D[] roomColliders = curRoom.GetComponentsInChildren<Collider2D>();
+        var center = curRoom.transform.position + (Vector3)(controls.roomSize / 2 * new Vector2(1, -1));
         do
         {
             float angle = random.Next(0, 359);
-            float dist = (float) (random.NextDouble() * 2f + 1f);
-            result = Quaternion.Euler(0, 0, angle).eulerAngles.normalized * dist;
+            float distX = (float) (random.NextDouble() + 1f);
+            float distY = (float) (random.NextDouble() + 1f);
+            result = center + new Vector3(distX, distY);
         } while (roomColliders.Any(col => col.bounds.Contains(result)));
         return result;
     }
     
     void PointToTarget()
     {
-        LineRenderer l = gameObject.AddComponent<LineRenderer>();
-        List<Vector3> pos = new List<Vector3>();
-        pos.Add(transform.position);
-        pos.Add(targetPosition);
-        l.startWidth = 0.1f;
-        l.endWidth = 0.1f;
-        l.SetPositions(pos.ToArray());
-        l.useWorldSpace = true;
+        LineRenderer l = gameObject.GetComponent<LineRenderer>();
+        float angle = Vector3.Angle(transform.position, targetPosition);
+        ParticleSystem pSys = GetComponent<ParticleSystem>();
+        ParticleSystem.ShapeModule shape = pSys.shape;
+        shape.rotation += Vector3.forward * angle;
+        pSys.Play();
     }
 }
 
 internal enum BossAction
 {
+    None,
     Jump,
     Spawn,
     Wait

@@ -148,7 +148,21 @@ public class MapGenerator : MonoBehaviour
             RoomType t = m_LevelMap[singlePos];
             if (t != RoomType.None)
             {
-                var go = Instantiate(roomPrefabs[random.Next(0, roomPrefabs.Count)], transform);
+                int prefabIndex;
+                switch (t)
+                {
+                    case RoomType.Start:
+                    case RoomType.Item:
+                        prefabIndex = 0;
+                        break;
+                    case RoomType.Boss:
+                        prefabIndex = roomPrefabs.Count - 1;
+                        break;
+                    default:
+                        prefabIndex = random.Next(0, roomPrefabs.Count - 1);
+                        break;
+                }
+                var go = Instantiate(roomPrefabs[prefabIndex], transform);
                 go.AddComponent<RoomTileController>();
                 go.transform.position = new Vector3(singlePos.x * controls.roomSize.x, singlePos.y * controls.roomSize.y * -1, 0);
                 RoomBehaviour room = go.AddComponent<RoomBehaviour>();

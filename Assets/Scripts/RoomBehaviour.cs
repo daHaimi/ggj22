@@ -41,14 +41,19 @@ public class RoomBehaviour : MonoBehaviour
         {
             if (!col.gameObject.name.StartsWith("spawn")) continue;
             Vector3 center = col.transform.position + (Vector3)(col.offset + col.size / 2 * new Vector2(1, -1));
+            Debug.Log(center);
             virgin = false; // defloration
             // Spawn enemies or pickups (3/1)
+            Debug.Log(type);
+            Debug.Log(controls.bossPrefabs[0]);
+            
             if (type == RoomType.Boss || random.Next(0, 3) > 0)
             {
                 GameObject prefab;
                 prefab = type == RoomType.Boss ? controls.bossPrefabs[0] : controls.enemyPrefabs[random.Next(0, controls.enemyPrefabs.Count)];
                 // Spawn enemies
                 //Instantiate(controls.enemyPrefabs[1], center, Quaternion.identity);
+                
                 Instantiate(prefab, center, Quaternion.identity);
             } else {
                 // Spawn pickups; 50% coin, 25% heart, 25% key
