@@ -1199,7 +1199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomSize: {x: 18, y: 14}
-  seed: 234
+  seed: 1235
   curRoom: {x: 0, y: 0}
   curRoomBounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -1212,6 +1212,8 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 3853136527662699693, guid: 0adbd7eeb26d97cb4ad673861a7ffb4f, type: 3}
   - {fileID: 8833622983824538842, guid: 0db44e5104b994fdf8b56dfd8ab1c56e, type: 3}
+  bossPrefabs:
+  - {fileID: 1283034132630604185, guid: e49f7fd1645c7c53abc54b349a9c130c, type: 3}
 --- !u!114 &1768469536
 MonoBehaviour:
   m_ObjectHideFlags: 0
