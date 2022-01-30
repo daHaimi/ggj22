@@ -160,7 +160,6 @@ public class MapGenerator : MonoBehaviour
     
     private void CreateFloor()
     {
-        var random = new Random(controls.seed);
         int y = 0;
         foreach (var singlePos in new RectInt(Vector2Int.zero, m_LevelMap.size).allPositionsWithin)
         {
@@ -183,7 +182,7 @@ public class MapGenerator : MonoBehaviour
                         prefabIndex = roomPrefabs.Count - 1;
                         break;
                     default:
-                        prefabIndex = random.Next(0, roomPrefabs.Count - 1);
+                        prefabIndex = controls.GetRandom(roomPrefabs.Count) - 1;
                         break;
                 }
                 var go = Instantiate(roomPrefabs[prefabIndex], transform);
@@ -220,8 +219,8 @@ public class MapGenerator : MonoBehaviour
             do
             {
                 location = new Vector2Int(
-                    random.Next(0, m_LevelMap.size.x),
-                    random.Next(0, m_LevelMap.size.y)
+                    controls.GetRandom(m_LevelMap.size.x) - 1,
+                    controls.GetRandom(m_LevelMap.size.x) - 1
                 );
             } while (!m_LevelMap.AcceptRoomAt(location));
 
@@ -230,8 +229,8 @@ public class MapGenerator : MonoBehaviour
         do
         {
             location = new Vector2Int(
-                random.Next(0, m_LevelMap.size.x),
-                random.Next(0, m_LevelMap.size.y)
+                controls.GetRandom(m_LevelMap.size.x) - 1,
+                controls.GetRandom(m_LevelMap.size.x) - 1
             );
         } while (!m_LevelMap.AcceptRoomAt(location, 0));
 

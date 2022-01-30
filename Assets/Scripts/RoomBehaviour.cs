@@ -76,7 +76,6 @@ public class RoomBehaviour : MonoBehaviour
     public void EnterRoom()
     {
         if (!virgin) return;
-        var random = new Random(controls.seed);
         foreach (var col in GetComponentsInChildren<BoxCollider2D>())
         {
             if (!col.gameObject.name.StartsWith("spawn")) continue;
@@ -87,10 +86,10 @@ public class RoomBehaviour : MonoBehaviour
             Debug.Log(type);
             Debug.Log(controls.bossPrefabs[0]);
             
-            if (type == RoomType.Boss || random.Next(0, 3) > 0)
+            if (type == RoomType.Boss || controls.GetRandom(4) > 1)
             {
                 GameObject prefab;
-                prefab = type == RoomType.Boss ? controls.bossPrefabs[0] : controls.enemyPrefabs[random.Next(0, controls.enemyPrefabs.Count)];
+                prefab = type == RoomType.Boss ? controls.bossPrefabs[0] : controls.enemyPrefabs[controls.GetRandom(controls.enemyPrefabs.Count) - 1];
                 // Spawn enemies
                 //Instantiate(controls.enemyPrefabs[1], center, Quaternion.identity);
                 
@@ -100,11 +99,10 @@ public class RoomBehaviour : MonoBehaviour
             } else {
                 // Spawn pickups; 50% coin, 25% heart, 25% key
                 PickupType puType;
-                int put = random.Next(0, 3);
-                put = 5;
-                if (put == 0 || put == 1) puType = PickupType.Heart;
-                else if (put == 1) puType = PickupType.Key;
-                else puType = PickupType.Coin;
+                int put = controls.GetRandom(3);
+                if (put == 0 || put == 1) puType = PickupType.Coin;
+                else if (put == 2) puType = PickupType.Heart;
+                else puType = PickupType.Key;
                 
                 Instantiate(controls.pickupPrefabs[(int) puType], center, Quaternion.identity);
             }

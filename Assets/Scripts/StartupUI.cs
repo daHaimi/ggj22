@@ -33,6 +33,5 @@ public class StartupUI : MonoBehaviour
         }
         PlayerPrefs.SetInt("seed", seed);
         SceneManager.LoadScene("Scenes/GameScene");
-        
     }
 }
