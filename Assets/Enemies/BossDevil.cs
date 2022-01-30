@@ -80,9 +80,8 @@ public class BossDevil : EnemyBase
         pSys.Play();
     }
 
-    protected void Die()
+    protected override void DieCallback()
     {
-        base.Die();
         SceneManager.LoadScene("Scenes/WinScene");
     }
 }

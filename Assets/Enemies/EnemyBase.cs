@@ -41,7 +41,12 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
-    protected void Die()
+    protected virtual void DieCallback()
+    {
+        
+    }
+    
+    protected virtual void Die()
     {
         if (drop)
         {
@@ -49,5 +54,6 @@ public class EnemyBase : MonoBehaviour
         }
         room.GetComponent<RoomBehaviour>().RemoveEnemy(this.gameObject);
         Destroy(gameObject);
+        DieCallback();
     }
 }

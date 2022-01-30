@@ -34,6 +34,7 @@ public class PlayerControls : MonoBehaviour
         {
             Pickup p = other.gameObject.GetComponent<Pickup>();
             if (p.type == PickupType.Heart) GainLife();
+            else if (p.type == PickupType.Coin) GainStat();
             else controls.playerCapabilities.pickups[p.type]++;
             player.clip = p.pickupSound;
             player.Play();
@@ -55,6 +56,12 @@ public class PlayerControls : MonoBehaviour
         {
             SceneManager.LoadScene("Scenes/LoseScene");
         }
+    }
+
+    private void GainStat()
+    {
+        // Todo: random stat
+        controls.playerCapabilities.damage ++;
     }
     
     private void GainLife()
