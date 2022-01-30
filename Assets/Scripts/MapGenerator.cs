@@ -152,7 +152,7 @@ public class MapGenerator : MonoBehaviour
                 bcEast.size = new Vector2(1, controls.roomSize.y);
                 bcEast.offset = new Vector2(controls.roomSize.x - 0.5f, -controls.roomSize.y / 2);
                 TileBase wallEast = tm.GetTile(new Vector3Int(17, -9, 0));
-                for (int i = -8; i <= -5; i++) tm.SetTile(new Vector3Int(17, i, 0), wallEast);
+                for (int i = -7; i <= -6; i++) tm.SetTile(new Vector3Int(17, i, 0), wallEast);
             }
         }
         // Doors
