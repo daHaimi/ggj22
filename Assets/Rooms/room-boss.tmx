@@ -82,7 +82,7 @@
   </properties>
   <object id="1" name="spawn_1" x="144.218" y="112.653"/>
  </objectgroup>
- <objectgroup id="6" name="collision" visible="0">
+ <objectgroup id="6" name="collision">
   <object id="2" x="37" y="32" width="5.75" height="12.125"/>
   <object id="3" x="244.938" y="32.125" width="6" height="11.8125"/>
   <object id="4" x="245.063" y="176.063" width="5.9375" height="12"/>
