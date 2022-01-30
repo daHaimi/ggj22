@@ -11,7 +11,7 @@ public class RoomTileController : MonoBehaviour
     private Tilemap laserTilemap;
     private TilemapRenderer laserTilemapRenderer;
     private Array laserColiders;
-    private bool laserOn = true;
+    // private bool laserOn = true;
     private int activePlates = 0;
     
     private float progress;
@@ -52,11 +52,6 @@ public class RoomTileController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other);
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -78,7 +73,7 @@ public class RoomTileController : MonoBehaviour
             lCollider.enabled = false;
         }
 
-        laserOn = false;
+        // laserOn = false;
     }
 
     void EnableLasers()
@@ -90,7 +85,7 @@ public class RoomTileController : MonoBehaviour
             lCollider.enabled = true;
         }
 
-        laserOn = true;
+        // laserOn = true;
     }
 
     public void StepOnPressurePlate()
@@ -100,8 +95,6 @@ public class RoomTileController : MonoBehaviour
             DisableLasers();
         } 
         activePlates += 1;
-        
-        Debug.Log(activePlates);
     }
 
     public void StepOffPressurePlate()
@@ -111,7 +104,5 @@ public class RoomTileController : MonoBehaviour
         {
             EnableLasers();
         }
-        
-        Debug.Log(activePlates);
     }
 }

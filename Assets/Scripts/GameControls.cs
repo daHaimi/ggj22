@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Models;
-using SuperTiled2Unity.Editor;
 using UnityEngine;
 using Random = System.Random;
 
@@ -17,7 +16,7 @@ public class GameControls : MonoBehaviour
     public List<GameObject> pickupPrefabs;
     public List<GameObject> enemyPrefabs;
     public List<GameObject> bossPrefabs;
-    public SuperTileset roomTileset;
+    // public SuperTileset roomTileset;
 
     private Random m_Random = null;
 

@@ -75,7 +75,6 @@ public class PlayerControls : MonoBehaviour
         // Raumwechsel nur von RightStick und wenn der andre in der Nähe (collision) ist
         if (other.isTrigger && RightStick && GetComponent<Rigidbody2D>().IsTouching(otherPlayer.GetComponent<Collider2D>()))
         {
-            Debug.Log(other);
             Vector2 delta = (controls.curRoomBounds.center - transform.position).normalized;
             Vector2 direction = new Vector2(Mathf.Round(-delta.x), Mathf.Round(delta.y));
             controls.rooms[controls.curRoom].GetComponent<ChangeRoom>().SwitchRoom(direction, gameObject);
