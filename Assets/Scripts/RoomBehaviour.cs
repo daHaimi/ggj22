@@ -49,17 +49,23 @@ public class RoomBehaviour : MonoBehaviour
 
     public void OpenRoom()
     {
-        Tilemap tm = this.gameObject.GetComponentsInChildren<Tilemap>()[1];
+        // Tilemap tm1 = this.gameObject.GetComponentsInChildren<Tilemap>()[0];
+        Tilemap tm2 = this.gameObject.GetComponentsInChildren<Tilemap>()[1];
+        
         controls = Camera.main.GetComponent<GameControls>();
         SuperTileset tileSet = controls.roomTileset;
         tileSet.TryGetTile(166, out SuperTile door_o_n);
         tileSet.TryGetTile(201, out SuperTile door_o_e);
-        tileSet.TryGetTile(198, out SuperTile door_o_w);
-        for (int i = 8; i <= 9; i++) tm.SetTile(new Vector3Int(i, 0, 0), door_o_n);
-        for (int i = 8; i <= 9; i++) tm.SetTile(new Vector3Int(i, -13, 0), door_o_n);
-        for (int i = -7; i <= -6; i++) tm.SetTile(new Vector3Int(0, i, 0), door_o_w);
-        for (int i = -7; i <= -6; i++) tm.SetTile(new Vector3Int(17, i, 0), door_o_e);
-        foreach (Collider2D col in tm.gameObject.GetComponents<Collider2D>())
+        tileSet.TryGetTile(198, out SuperTile door_o_w); 
+        if (tm2.GetTile(new Vector3Int(8, 0, 0)))
+            for (int i = 8; i <= 9; i++) tm2.SetTile(new Vector3Int(i, 0, 0), door_o_n);
+        if (tm2.GetTile(new Vector3Int(8, -13, 0)))
+            for (int i = 8; i <= 9; i++) tm2.SetTile(new Vector3Int(i, -13, 0), door_o_n);
+        if (tm2.GetTile(new Vector3Int(0, -7, 0)))
+            for (int i = -7; i <= -6; i++) tm2.SetTile(new Vector3Int(0, i, 0), door_o_w);
+        if (tm2.GetTile(new Vector3Int(17, -7, 0)))
+            for (int i = -7; i <= -6; i++) tm2.SetTile(new Vector3Int(17, i, 0), door_o_e);
+        foreach (Collider2D col in tm2.gameObject.GetComponents<Collider2D>())
         {
             Destroy(col);
         }
