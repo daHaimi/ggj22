@@ -272,7 +272,8 @@ SpriteRenderer:
   m_SortingLayerID: -265532881
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1062064769042425764, guid: f0efeae2d00eb786295dea1166f7d2b6, type: 3}
+  m_Sprite: {fileID: 1062064769042425764, guid: f0efeae2d00eb786295dea1166f7d2b6,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -295,7 +296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b26f7983ba85deaca81fc6b7927929f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pfeilPrefab: {fileID: 6134174148727049570, guid: 796c52e2d0d89dfd3bea5d11e63fe78d, type: 3}
+  pfeilPrefab: {fileID: 6134174148727049570, guid: 796c52e2d0d89dfd3bea5d11e63fe78d,
+    type: 3}
 --- !u!1 &226696539
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,6 +333,7 @@ MonoBehaviour:
   - {fileID: 3296915448054463943, guid: a65c295b3160c7dd09e67f9a05620b26, type: 3}
   - {fileID: 1366835290594915754, guid: 9f60a21415cdb5c74aebace6b879bad8, type: 3}
   - {fileID: -5115998072581405210, guid: 90557ac989bacbe35bd08b50685de74d, type: 3}
+  - {fileID: 1886135844622570157, guid: 43317eb90ea716309852eb57a3c6e096, type: 3}
   mapSize: 6
 --- !u!4 &226696541
 Transform:
@@ -678,7 +681,8 @@ SpriteRenderer:
   m_SortingLayerID: -265532881
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7,
+    type: 3}
   m_Color: {r: 0.2784314, g: 0.056737266, b: 0.4811321, a: 1}
   m_FlipX: 0
   m_FlipY: 0

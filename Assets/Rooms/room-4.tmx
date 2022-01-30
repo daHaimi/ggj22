@@ -38,12 +38,12 @@
 </data>
  </layer>
  <objectgroup id="3" name="collision">
-  <object id="1" x="96" y="32" width="96" height="16"/>
-  <object id="2" x="176" y="80" width="96" height="16"/>
-  <object id="3" x="176" y="128" width="96" height="16"/>
-  <object id="5" x="16" y="128" width="96" height="16"/>
-  <object id="6" x="16" y="80" width="96" height="16"/>
-  <object id="7" x="96" y="176" width="96" height="16"/>
+  <object id="1" type="hole" x="96" y="32" width="96" height="16"/>
+  <object id="2" type="hole" x="176" y="80" width="96" height="16"/>
+  <object id="3" type="hole" x="176" y="128" width="96" height="16"/>
+  <object id="5" type="hole" x="16" y="128" width="96" height="16"/>
+  <object id="6" type="hole" x="16" y="80" width="96" height="16"/>
+  <object id="7" type="hole" x="96" y="176" width="96" height="16"/>
  </objectgroup>
  <objectgroup id="4" name="spawn">
   <properties>
