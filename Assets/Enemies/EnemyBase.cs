@@ -41,7 +41,7 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
-    private void Die()
+    protected void Die()
     {
         if (drop)
         {

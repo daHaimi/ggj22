@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 using Random = System.Random;
 
 public class BossDevil : EnemyBase
@@ -77,6 +78,12 @@ public class BossDevil : EnemyBase
         ParticleSystem.ShapeModule shape = pSys.shape;
         shape.rotation += Vector3.forward * angle;
         pSys.Play();
+    }
+
+    protected void Die()
+    {
+        base.Die();
+        SceneManager.LoadScene("Scenes/WinScene");
     }
 }
 

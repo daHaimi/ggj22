@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Models;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerControls : MonoBehaviour
@@ -50,11 +51,16 @@ public class PlayerControls : MonoBehaviour
     private void LoseLife()
     {
         controls.playerCapabilities.life[RightStick ? 1 : 0].current--;
+        if (controls.playerCapabilities.life[RightStick ? 1 : 0].current < 1)
+        {
+            SceneManager.LoadScene("Scenes/LoseScene");
+        }
     }
     
     private void GainLife()
     {
-        controls.playerCapabilities.life[RightStick ? 1 : 0].current++;
+        if (controls.playerCapabilities.life[RightStick ? 1 : 0].current < controls.playerCapabilities.life[RightStick ? 1 : 0].capacity)
+            controls.playerCapabilities.life[RightStick ? 1 : 0].current++;
     }
     
     private void OnTriggerStay2D(Collider2D other)
