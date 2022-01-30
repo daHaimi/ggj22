@@ -87,13 +87,13 @@
   <object id="3" x="244.938" y="32.125" width="6" height="11.8125"/>
   <object id="4" x="245.063" y="176.063" width="5.9375" height="12"/>
   <object id="5" x="37.0625" y="175.938" width="6" height="12.0625"/>
-  <object id="6" x="16" y="16" width="16" height="64"/>
-  <object id="7" x="32" y="16" width="80" height="16"/>
-  <object id="8" x="176" y="16" width="96" height="16"/>
-  <object id="9" x="256" y="32" width="16" height="48"/>
-  <object id="10" x="256" y="144" width="16" height="64"/>
-  <object id="11" x="176" y="192" width="80" height="16"/>
-  <object id="12" x="16" y="192" width="96" height="16"/>
-  <object id="13" x="16" y="144" width="16" height="48"/>
+  <object id="6" type="hole" x="16" y="16" width="16" height="64"/>
+  <object id="7" type="hole" x="32" y="16" width="80" height="16"/>
+  <object id="8" type="hole" x="176" y="16" width="96" height="16"/>
+  <object id="9" type="hole" x="256" y="32" width="16" height="48"/>
+  <object id="10" type="hole" x="256" y="144" width="16" height="64"/>
+  <object id="11" type="hole" x="176" y="192" width="80" height="16"/>
+  <object id="12" type="hole" x="16" y="192" width="96" height="16"/>
+  <object id="13" type="hole" x="16" y="144" width="16" height="48"/>
  </objectgroup>
 </map>

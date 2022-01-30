@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="18" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="21">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="18" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="22">
  <tileset firstgid="1" source="room-tiles.tsx"/>
  <layer id="1" name="bg" width="18" height="14">
   <data encoding="csv">
@@ -60,20 +60,20 @@
    <property name="unity:SortingLayer" value="Foreground"/>
   </properties>
   <data encoding="csv">
-0,0,0,0,0,0,0,0,168,168,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,47,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-200,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,201,
-200,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,201,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,168,168,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <layer id="6" name="laser" width="18" height="14">
