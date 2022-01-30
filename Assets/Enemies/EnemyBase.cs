@@ -7,16 +7,24 @@ public class EnemyBase : MonoBehaviour
 {
     public float hitpoints;
     public GameObject drop;
+    public Animator anim;
 
     protected void Initialize()
     {
         gameObject.tag = "Enemy";
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        if (anim)
+        {
+            Vector2 lookDirection = GetComponent<Rigidbody2D>().velocity.normalized;
+            anim.SetFloat("Look X", lookDirection.x);
+            anim.SetFloat("Look Y", lookDirection.y);
+            anim.SetFloat("Speed", lookDirection.magnitude);
+        }
     }
     
     private void OnCollisionEnter2D(Collision2D other)

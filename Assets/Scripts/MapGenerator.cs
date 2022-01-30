@@ -165,6 +165,8 @@ public class MapGenerator : MonoBehaviour
                     nPos.z = 0;
                     controls.player.ForEach(pl => pl.transform.position = nPos); 
                     controls.SetCurRoom(singlePos);
+                    foreach (var col in GetComponentsInChildren<BoxCollider2D>()) 
+                        if (col.gameObject.name.StartsWith("spawn")) Destroy(col);
                 }
             }
         }

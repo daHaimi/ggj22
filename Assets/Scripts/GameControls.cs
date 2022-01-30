@@ -14,6 +14,7 @@ public class GameControls : MonoBehaviour
     public PlayerCapabilities playerCapabilities = new PlayerCapabilities();
     public List<GameObject> pickupPrefabs;
     public List<GameObject> enemyPrefabs;
+    public List<GameObject> bossPrefabs;
     
     // Start is called before the first frame update
     void Start()
