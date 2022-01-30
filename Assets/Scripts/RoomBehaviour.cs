@@ -89,7 +89,8 @@ public class RoomBehaviour : MonoBehaviour
                 {
                     if (col.gameObject.name.StartsWith("spawn"))
                     {
-                        Vector3 center = col.transform.position + (Vector3)(col.offset + col.size / 2 * new Vector2(1, -1));
+                        Vector3 center = col.transform.position +
+                                         (Vector3)(col.offset + col.size / 2 * new Vector2(1, -1));
                         virgin = false; // defloration
                         // Spawn enemies or pickups (3/1)
                         if (random.Next(0, 3) == 0)
@@ -101,18 +102,25 @@ public class RoomBehaviour : MonoBehaviour
                             if (put == 0 || put == 1) puType = PickupType.Heart;
                             else if (put == 1) puType = PickupType.Key;
                             else puType = PickupType.Coin;
-                    
-                            var pickup = Instantiate(controls.pickupPrefabs[(int) puType], center, Quaternion.identity);
+
+                            var pickup = Instantiate(controls.pickupPrefabs[(int)puType], center, Quaternion.identity);
                         }
                         else
                         {
                             // Spawn enemies
                             //Instantiate(controls.enemyPrefabs[1], center, Quaternion.identity);
-                            var enemy = Instantiate(controls.enemyPrefabs[random.Next(0, controls.enemyPrefabs.Count)], center, Quaternion.identity);
+                            var enemy = Instantiate(controls.enemyPrefabs[random.Next(0, controls.enemyPrefabs.Count)],
+                                center, Quaternion.identity);
                             enemyCount += 1;
                             enemy.GetComponent<EnemyBase>().room = this.gameObject;
                         }
+
                         Destroy(col);
+                    }
+
+                    if (enemyCount == 0)
+                    {
+                        OpenRoom();
                     }
                 }
             }
