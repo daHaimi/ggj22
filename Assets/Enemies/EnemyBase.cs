@@ -21,7 +21,7 @@ public class EnemyBase : MonoBehaviour
     {
         if (anim)
         {
-            Vector2 lookDirection = GetComponent<Rigidbody2D>().velocity.normalized;
+            Vector2 lookDirection = GetComponent<Rigidbody2D>().velocity;
             anim.SetFloat("Look X", lookDirection.x);
             anim.SetFloat("Look Y", lookDirection.y);
             anim.SetFloat("Speed", lookDirection.magnitude);
