@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Models;
+using SuperTiled2Unity.Editor;
 using UnityEngine;
 
 public class GameControls : MonoBehaviour
@@ -15,6 +16,7 @@ public class GameControls : MonoBehaviour
     public List<GameObject> pickupPrefabs;
     public List<GameObject> enemyPrefabs;
     public List<GameObject> bossPrefabs;
+    public SuperTileset roomTileset;
     
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,11 @@ public class GameControls : MonoBehaviour
     {
         curRoom = cur;
         curRoomBounds = new Bounds(rooms[cur].transform.position + new Vector3(roomSize.x / 2, roomSize.y / -2), roomSize);
+    }
+
+    public GameObject GetCurRoomGameObject()
+    {
+        return rooms[curRoom].gameObject;
     }
     
     // Update is called once per frame

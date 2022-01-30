@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Models;
+using SuperTiled2Unity;
+using SuperTiled2Unity.Editor;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -39,6 +41,11 @@ public class MapGenerator : MonoBehaviour
         // Walls
         {
             Tilemap tm = room.gameObject.GetComponentsInChildren<Tilemap>()[0];
+            Tilemap tm2 = room.gameObject.GetComponentsInChildren<Tilemap>()[1];
+            SuperTileset tileSet = controls.roomTileset;
+            tileSet.TryGetTile(167, out SuperTile door_c_n);
+            tileSet.TryGetTile(200, out SuperTile door_c_e);
+            tileSet.TryGetTile(199, out SuperTile door_c_w);
             // North (interchange up/down!!!)
             BoxCollider2D bcNorth = room.gameObject.AddComponent<BoxCollider2D>();
             if (m_LevelMap.InBounds(pos + Vector2Int.down) && !m_LevelMap.IsEmpty(pos + Vector2Int.down))
@@ -53,6 +60,10 @@ public class MapGenerator : MonoBehaviour
                 trNorth.size = new Vector2(2.0f, .5f);
                 trNorth.offset = new Vector2(controls.roomSize.x / 2, -0.25f);
                 trNorth.isTrigger = true;
+                for (int i = 8; i <= 9; i++) tm2.SetTile(new Vector3Int(i, 0, 0), door_c_n);
+                BoxCollider2D dc = tm2.gameObject.AddComponent<BoxCollider2D>();
+                dc.size = new Vector2(2.0f, 1f);
+                dc.offset = new Vector2(controls.roomSize.x / 2, 0.5f);
             }
             else
             {
@@ -76,6 +87,11 @@ public class MapGenerator : MonoBehaviour
                 trSouth.size = new Vector2(2.0f, .5f);
                 trSouth.offset = new Vector2(controls.roomSize.x / 2, -controls.roomSize.y + 0.25f);
                 trSouth.isTrigger = true;
+                for (int i = 8; i <= 9; i++) tm2.SetTile(new Vector3Int(i, -13, 0), door_c_n);
+                BoxCollider2D dc = tm2.gameObject.AddComponent<BoxCollider2D>();
+                dc.size = new Vector2(2.0f, 1f);
+                dc.offset = new Vector2(controls.roomSize.x / 2, -controls.roomSize.y + 1.5f);
+                // dc.offset.Set(dc.offset.x, dc.offset.y +1);
             }
             else
             {
@@ -99,6 +115,10 @@ public class MapGenerator : MonoBehaviour
                 trWest.size = new Vector2(.5f, 2.0f);
                 trWest.offset = new Vector2(0.25f, -controls.roomSize.y / 2);
                 trWest.isTrigger = true;
+                for (int i = -7; i <= -6; i++) tm2.SetTile(new Vector3Int(0, i, 0), door_c_w);
+                BoxCollider2D dc = tm2.gameObject.AddComponent<BoxCollider2D>();
+                dc.size = new Vector2(1f, 2.0f);
+                dc.offset = new Vector2(0.5f, -controls.roomSize.y / 2 + 1);
             }
             else
             {
@@ -122,6 +142,10 @@ public class MapGenerator : MonoBehaviour
                 trEast.size = new Vector2(.5f, 2.0f);
                 trEast.offset = new Vector2(controls.roomSize.x - 0.25f, -controls.roomSize.y / 2);
                 trEast.isTrigger = true;
+                for (int i = -7; i <= -6; i++) tm2.SetTile(new Vector3Int(17, i, 0), door_c_e);
+                BoxCollider2D dc = tm2.gameObject.AddComponent<BoxCollider2D>();
+                dc.size = new Vector2(1f, 2.0f);
+                dc.offset = new Vector2(controls.roomSize.x - 0.5f, -controls.roomSize.y / 2 + 1);
             }
             else
             {
@@ -181,6 +205,7 @@ public class MapGenerator : MonoBehaviour
                     controls.SetCurRoom(singlePos);
                     foreach (var col in GetComponentsInChildren<BoxCollider2D>()) 
                         if (col.gameObject.name.StartsWith("spawn")) Destroy(col);
+                    room.OpenRoom();
                 }
             }
         }
