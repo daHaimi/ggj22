@@ -5,7 +5,6 @@ using Models;
 using SuperTiled2Unity;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using Random = System.Random;
 
 public class RoomBehaviour : MonoBehaviour
 {
@@ -91,19 +90,15 @@ public class RoomBehaviour : MonoBehaviour
                     col.offset.x - controls.GetRandom((int)col.size.x),
                     col.offset.y - controls.GetRandom((int)col.size.y)
                 );
-                Debug.Log(center);
                 virgin = false; // defloration
-                // Spawn enemies or pickups (3/1)
-                Debug.Log(type);
-
-                if (type == RoomType.Boss || controls.GetRandom(5) > 1)
+                
+                // Spawn enemies or pickups (7/1)
+                if (type == RoomType.Boss || controls.GetRandom(6) > 1)
                 {
                     GameObject prefab;
                     prefab = type == RoomType.Boss
                         ? controls.bossPrefabs[0]
-                        : controls.enemyPrefabs[controls.GetRandom(controls.enemyPrefabs.Count) - 1];
-                    // Spawn enemies
-                    //Instantiate(controls.enemyPrefabs[1], center, Quaternion.identity);
+                        : controls.enemyPrefabs[controls.GetRandom(controls.enemyPrefabs.Count)];
 
                     var enemy = Instantiate(prefab, center, Quaternion.identity);
                     enemyCount += 1;
@@ -113,7 +108,7 @@ public class RoomBehaviour : MonoBehaviour
                 {
                     // Spawn pickups; 50% coin, 25% heart, 25% key
                     PickupType puType;
-                    int put = controls.GetRandom(4) - 1;
+                    int put = controls.GetRandom(4);
                     if (put == 0 || put == 1) puType = PickupType.Coin;
                     else puType = PickupType.Heart;
 

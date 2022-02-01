@@ -172,8 +172,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 0.2906223
+  m_UseAutoMass: 0
+  m_Mass: 0.3
   m_LinearDrag: 15
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -273,8 +273,7 @@ SpriteRenderer:
   m_SortingLayerID: -265532881
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1062064769042425764, guid: f0efeae2d00eb786295dea1166f7d2b6,
-    type: 3}
+  m_Sprite: {fileID: 1062064769042425764, guid: f0efeae2d00eb786295dea1166f7d2b6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -297,8 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b26f7983ba85deaca81fc6b7927929f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pfeilPrefab: {fileID: 6134174148727049570, guid: 796c52e2d0d89dfd3bea5d11e63fe78d,
-    type: 3}
+  pfeilPrefab: {fileID: 6134174148727049570, guid: 796c52e2d0d89dfd3bea5d11e63fe78d, type: 3}
 --- !u!61 &80431761
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -361,7 +359,12 @@ MonoBehaviour:
   - {fileID: 1366835290594915754, guid: 9f60a21415cdb5c74aebace6b879bad8, type: 3}
   - {fileID: -5115998072581405210, guid: 90557ac989bacbe35bd08b50685de74d, type: 3}
   - {fileID: 1886135844622570157, guid: 43317eb90ea716309852eb57a3c6e096, type: 3}
+  boosRoomPrefabs:
   - {fileID: -5907719631734101287, guid: 42b9eb80c2ad986edad26399730dc359, type: 3}
+  startRoomPrefabs:
+  - {fileID: -5867405247322059703, guid: a94d45d017280707f845f0a9df10bbe0, type: 3}
+  - {fileID: 3296915448054463943, guid: a65c295b3160c7dd09e67f9a05620b26, type: 3}
+  - {fileID: -5115998072581405210, guid: 90557ac989bacbe35bd08b50685de74d, type: 3}
   mapSize: 6
 --- !u!4 &226696541
 Transform:
@@ -645,8 +648,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 0.25267762
+  m_UseAutoMass: 0
+  m_Mass: 0.3
   m_LinearDrag: 15
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -711,8 +714,7 @@ SpriteRenderer:
   m_SortingLayerID: -265532881
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6591669790409218576, guid: 1e4466bdfbc3122fc8ffd02e412a6917,
-    type: 3}
+  m_Sprite: {fileID: 6591669790409218576, guid: 1e4466bdfbc3122fc8ffd02e412a6917, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1420,8 +1422,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7784558890145429003, guid: a3fc9fcea4e65157d82661dd9b7e73a6,
-    type: 3}
+  m_Sprite: {fileID: 7784558890145429003, guid: a3fc9fcea4e65157d82661dd9b7e73a6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1517,13 +1518,12 @@ MonoBehaviour:
   - {fileID: 632028722}
   pickupPrefabs:
   - {fileID: 2994227832071957011, guid: 16ffe0747b3bd8904b69a5bd37a9805d, type: 3}
+  - {fileID: 1118923135108574387, guid: f2b3dc618055a4de59e705c5cb12aa0b, type: 3}
   enemyPrefabs:
   - {fileID: 3853136527662699693, guid: 0adbd7eeb26d97cb4ad673861a7ffb4f, type: 3}
   - {fileID: 8833622983824538842, guid: 0db44e5104b994fdf8b56dfd8ab1c56e, type: 3}
   bossPrefabs:
   - {fileID: 4909765831308971261, guid: 9bb3f23ba0c8819d68488d944789d787, type: 3}
-  roomTileset: {fileID: -7126433371136705374, guid: ae3e1b3d6b06a8888909a24e25063f48,
-    type: 3}
 --- !u!114 &1768469536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1540,10 +1540,10 @@ MonoBehaviour:
   m_RefResolutionX: 288
   m_RefResolutionY: 224
   m_UpscaleRT: 0
-  m_PixelSnapping: 0
+  m_PixelSnapping: 1
   m_CropFrameX: 1
   m_CropFrameY: 1
-  m_StretchFill: 0
+  m_StretchFill: 1
 --- !u!81 &1768469537
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1622,7 +1622,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.598
   m_Pitch: 1
   Loop: 0
   Mute: 0

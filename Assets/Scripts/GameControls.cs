@@ -16,7 +16,6 @@ public class GameControls : MonoBehaviour
     public List<GameObject> pickupPrefabs;
     public List<GameObject> enemyPrefabs;
     public List<GameObject> bossPrefabs;
-    // public SuperTileset roomTileset;
 
     private Random m_Random = null;
 
@@ -27,19 +26,15 @@ public class GameControls : MonoBehaviour
             seed = PlayerPrefs.GetInt("seed");
         }
 
+        Debug.Log("Seed: " + seed);
+
         m_Random = new Random(seed);
     }
 
     public int GetRandom(int max)
     {
         if (m_Random == null) InitRandom();
-        int result = 0;
-        do
-        {
-            result = m_Random.Next(0, max);
-        } while (result < 1);
-
-        return result;
+        return m_Random.Next(0, max);
     }
     
     public void SetCurRoom(Vector2 cur)
