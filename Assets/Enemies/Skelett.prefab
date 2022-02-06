@@ -157,4 +157,5 @@ MonoBehaviour:
   hitpoints: 25
   drop: {fileID: 1118923135108574387, guid: f2b3dc618055a4de59e705c5cb12aa0b, type: 3}
   anim: {fileID: 0}
-  speed: 1.75
+  room: {fileID: 0}
+  speed: 8

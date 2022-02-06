@@ -359,6 +359,7 @@ MonoBehaviour:
   - {fileID: 1366835290594915754, guid: 9f60a21415cdb5c74aebace6b879bad8, type: 3}
   - {fileID: -5115998072581405210, guid: 90557ac989bacbe35bd08b50685de74d, type: 3}
   - {fileID: 1886135844622570157, guid: 43317eb90ea716309852eb57a3c6e096, type: 3}
+  - {fileID: -7260947084688836423, guid: 840403afd99754267be06bd94ad5dc99, type: 3}
   boosRoomPrefabs:
   - {fileID: -5907719631734101287, guid: 42b9eb80c2ad986edad26399730dc359, type: 3}
   startRoomPrefabs:
@@ -1524,6 +1525,7 @@ MonoBehaviour:
   - {fileID: 8833622983824538842, guid: 0db44e5104b994fdf8b56dfd8ab1c56e, type: 3}
   bossPrefabs:
   - {fileID: 4909765831308971261, guid: 9bb3f23ba0c8819d68488d944789d787, type: 3}
+  tilesetHackMap: {fileID: -1760697861318906617, guid: b180ca43ee655854ab27b46502dbf242, type: 3}
 --- !u!114 &1768469536
 MonoBehaviour:
   m_ObjectHideFlags: 0

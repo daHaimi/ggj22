@@ -7,7 +7,7 @@ public class EnemyBase : MonoBehaviour
 {
     public float hitpoints;
     public GameObject drop;
-    public Animator anim;
+    protected Animator anim;
     public GameObject room;
 
     protected void Initialize()

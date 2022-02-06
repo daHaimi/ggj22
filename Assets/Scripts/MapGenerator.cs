@@ -43,6 +43,9 @@ public class MapGenerator : MonoBehaviour
             Tilemap tm = room.gameObject.GetComponentsInChildren<Tilemap>()[0];
             Tilemap tm2 = room.gameObject.GetComponentsInChildren<Tilemap>()[1];
             // SuperTileset tileSet = controls.roomTileset;
+            TileBase door_c_n = controls.GetHackTile(0);
+            TileBase door_c_e = controls.GetHackTile(1);
+            TileBase door_c_w = controls.GetHackTile(2);
             // tileSet.TryGetTile(167, out SuperTile door_c_n);
             // tileSet.TryGetTile(200, out SuperTile door_c_e);
             // tileSet.TryGetTile(199, out SuperTile door_c_w);
@@ -60,7 +63,7 @@ public class MapGenerator : MonoBehaviour
                 trNorth.size = new Vector2(2.0f, .5f);
                 trNorth.offset = new Vector2(controls.roomSize.x / 2, -0.25f);
                 trNorth.isTrigger = true;
-                // for (int i = 8; i <= 9; i++) tm2.SetTile(new Vector3Int(i, 0, 0), door_c_n);
+                for (int i = 8; i <= 9; i++) tm2.SetTile(new Vector3Int(i, 0, 0), door_c_n);
                 BoxCollider2D dc = tm2.gameObject.AddComponent<BoxCollider2D>();
                 dc.size = new Vector2(2.0f, 1f);
                 dc.offset = new Vector2(controls.roomSize.x / 2, 0.5f);
@@ -87,7 +90,7 @@ public class MapGenerator : MonoBehaviour
                 trSouth.size = new Vector2(2.0f, .5f);
                 trSouth.offset = new Vector2(controls.roomSize.x / 2, -controls.roomSize.y + 0.25f);
                 trSouth.isTrigger = true;
-                // for (int i = 8; i <= 9; i++) tm2.SetTile(new Vector3Int(i, -13, 0), door_c_n);
+                for (int i = 8; i <= 9; i++) tm2.SetTile(new Vector3Int(i, -13, 0), door_c_n);
                 BoxCollider2D dc = tm2.gameObject.AddComponent<BoxCollider2D>();
                 dc.size = new Vector2(2.0f, 1f);
                 dc.offset = new Vector2(controls.roomSize.x / 2, -controls.roomSize.y + 1.5f);
@@ -115,7 +118,7 @@ public class MapGenerator : MonoBehaviour
                 trWest.size = new Vector2(.5f, 2.0f);
                 trWest.offset = new Vector2(0.25f, -controls.roomSize.y / 2);
                 trWest.isTrigger = true;
-                // for (int i = -7; i <= -6; i++) tm2.SetTile(new Vector3Int(0, i, 0), door_c_w);
+                for (int i = -7; i <= -6; i++) tm2.SetTile(new Vector3Int(0, i, 0), door_c_w);
                 BoxCollider2D dc = tm2.gameObject.AddComponent<BoxCollider2D>();
                 dc.size = new Vector2(1f, 2.0f);
                 dc.offset = new Vector2(0.5f, -controls.roomSize.y / 2 + 1);
@@ -142,7 +145,7 @@ public class MapGenerator : MonoBehaviour
                 trEast.size = new Vector2(.5f, 2.0f);
                 trEast.offset = new Vector2(controls.roomSize.x - 0.25f, -controls.roomSize.y / 2);
                 trEast.isTrigger = true;
-                // for (int i = -7; i <= -6; i++) tm2.SetTile(new Vector3Int(17, i, 0), door_c_e);
+                for (int i = -7; i <= -6; i++) tm2.SetTile(new Vector3Int(17, i, 0), door_c_e);
                 BoxCollider2D dc = tm2.gameObject.AddComponent<BoxCollider2D>();
                 dc.size = new Vector2(1f, 2.0f);
                 dc.offset = new Vector2(controls.roomSize.x - 0.5f, -controls.roomSize.y / 2 + 1);

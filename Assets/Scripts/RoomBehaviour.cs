@@ -51,18 +51,17 @@ public class RoomBehaviour : MonoBehaviour
         Tilemap tm2 = this.gameObject.GetComponentsInChildren<Tilemap>()[1];
         
         controls = Camera.main.GetComponent<GameControls>();
-        // SuperTileset tileSet = controls.roomTileset;
-        // tileSet.TryGetTile(166, out SuperTile door_o_n);
-        // tileSet.TryGetTile(201, out SuperTile door_o_e);
-        // tileSet.TryGetTile(198, out SuperTile door_o_w); 
-        // if (tm2.GetTile(new Vector3Int(8, 0, 0)))
-            // for (int i = 8; i <= 9; i++) tm2.SetTile(new Vector3Int(i, 0, 0), door_o_n);
-        // if (tm2.GetTile(new Vector3Int(8, -13, 0)))
-            // for (int i = 8; i <= 9; i++) tm2.SetTile(new Vector3Int(i, -13, 0), door_o_n);
-        // if (tm2.GetTile(new Vector3Int(0, -7, 0)))
-            // for (int i = -7; i <= -6; i++) tm2.SetTile(new Vector3Int(0, i, 0), door_o_w);
-        // if (tm2.GetTile(new Vector3Int(17, -7, 0)))
-            // for (int i = -7; i <= -6; i++) tm2.SetTile(new Vector3Int(17, i, 0), door_o_e);
+        TileBase door_o_n = controls.GetHackTile(4);
+        TileBase door_o_e = controls.GetHackTile(5);
+        TileBase door_o_w = controls.GetHackTile(6);
+        if (tm2.GetTile(new Vector3Int(8, 0, 0)))
+            for (int i = 8; i <= 9; i++) tm2.SetTile(new Vector3Int(i, 0, 0), door_o_n);
+        if (tm2.GetTile(new Vector3Int(8, -13, 0)))
+            for (int i = 8; i <= 9; i++) tm2.SetTile(new Vector3Int(i, -13, 0), door_o_n);
+        if (tm2.GetTile(new Vector3Int(0, -7, 0)))
+            for (int i = -7; i <= -6; i++) tm2.SetTile(new Vector3Int(0, i, 0), door_o_w);
+        if (tm2.GetTile(new Vector3Int(17, -7, 0)))
+            for (int i = -7; i <= -6; i++) tm2.SetTile(new Vector3Int(17, i, 0), door_o_e);
         foreach (Collider2D col in tm2.gameObject.GetComponents<Collider2D>())
         {
             Destroy(col);
@@ -87,8 +86,9 @@ public class RoomBehaviour : MonoBehaviour
             for (int i = 0; i < num; i++)
             {
                 Vector3 center = col.transform.position + new Vector3(
-                    col.offset.x - controls.GetRandom((int)col.size.x),
-                    col.offset.y - controls.GetRandom((int)col.size.y)
+                    controls.GetRandom((int)col.size.x),
+                    controls.GetRandom((int)col.size.y) * -1,
+                    0
                 );
                 virgin = false; // defloration
                 

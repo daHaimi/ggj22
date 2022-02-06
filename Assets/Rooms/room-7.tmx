@@ -94,14 +94,14 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="7" name="collision">
-  <object id="5" x="101.182" y="96.0909" width="5.63636" height="11.6364"/>
-  <object id="6" x="181.364" y="96.0909" width="5.18182" height="11.4545"/>
- </objectgroup>
- <objectgroup id="8" name="laser_collision">
+ <objectgroup id="8" name="collision_laser">
   <object id="2" x="102.636" y="16.1818" width="1.72727" height="77.9091"/>
   <object id="3" x="107.364" y="88.1818" width="73.8182" height="17.2727"/>
   <object id="4" x="182" y="108" width="2.81818" height="100"/>
+ </objectgroup>
+ <objectgroup id="7" name="collision">
+  <object id="5" x="101.182" y="96.0909" width="5.63636" height="11.6364"/>
+  <object id="6" x="181.364" y="96.0909" width="5.18182" height="11.4545"/>
  </objectgroup>
  <objectgroup id="9" name="pressure_plates">
   <object id="7" name="pp_1" x="147.375" y="131.5" width="9.125" height="9"/>

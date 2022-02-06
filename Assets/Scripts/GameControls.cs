@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Models;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using SuperTiled2Unity;
 using Random = System.Random;
 
 public class GameControls : MonoBehaviour
@@ -16,8 +18,10 @@ public class GameControls : MonoBehaviour
     public List<GameObject> pickupPrefabs;
     public List<GameObject> enemyPrefabs;
     public List<GameObject> bossPrefabs;
+    public GameObject tilesetHackMap;
 
     private Random m_Random = null;
+    private Tilemap hackTilemap;
 
     private void InitRandom()
     {
@@ -29,6 +33,18 @@ public class GameControls : MonoBehaviour
         Debug.Log("Seed: " + seed);
 
         m_Random = new Random(seed);
+
+        
+
+    }
+
+    public TileBase GetHackTile(int id) {
+        if (!hackTilemap) {
+            hackTilemap = tilesetHackMap.GetComponentsInChildren<Tilemap>()[0];
+        }
+        int x = id % 4;
+        int y = (id / 4) * -1;
+        return hackTilemap.GetTile(new Vector3Int(x, y, 0));
     }
 
     public int GetRandom(int max)
